@@ -624,6 +624,34 @@
   .agentic-tool-name {
     font-size: 11px;
   }
+  
+  /* Remove hover effects on mobile and keep white colors */
+  .agentic-tool-item:hover {
+    transform: none;
+  }
+  
+  .agentic-tool-item:hover .agentic-tool-icon::before {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .agentic-tool-icon {
+    color: #ffffff !important;
+  }
+  
+  .agentic-tool-item:hover .agentic-tool-icon {
+    color: #ffffff !important;
+    transform: none;
+    box-shadow: none;
+  }
+  
+  .agentic-tool-name {
+    color: #ffffff !important;
+  }
+  
+  .agentic-tool-item:hover .agentic-tool-name {
+    color: #ffffff !important;
+  }
 }
 
 @media (max-width: 480px) {
@@ -654,6 +682,34 @@
   
   .agentic-tool-name {
     font-size: 10px;
+  }
+  
+  /* Remove hover effects on small mobile and keep white colors */
+  .agentic-tool-item:hover {
+    transform: none;
+  }
+  
+  .agentic-tool-item:hover .agentic-tool-icon::before {
+    width: 90px;
+    height: 90px;
+  }
+  
+  .agentic-tool-icon {
+    color: #ffffff !important;
+  }
+  
+  .agentic-tool-item:hover .agentic-tool-icon {
+    color: #ffffff !important;
+    transform: none;
+    box-shadow: none;
+  }
+  
+  .agentic-tool-name {
+    color: #ffffff !important;
+  }
+  
+  .agentic-tool-item:hover .agentic-tool-name {
+    color: #ffffff !important;
   }
 }
 
@@ -1439,6 +1495,15 @@
     gap: 30px;
   }
   
+  .agentic-benefit-icon {
+    width: 80px;
+    height: 80px;
+    font-size: 32px;
+  }
+  .agentic-benefit-icon i {
+    font-size: 30px;
+}
+  
   .agentic-process {
     padding: 80px 0;
   }
@@ -1496,6 +1561,12 @@
   }
   
   .agentic-benefits-title {
+    font-size: 28px;
+  }
+  
+  .agentic-benefit-icon {
+    width: 70px;
+    height: 70px;
     font-size: 28px;
   }
   

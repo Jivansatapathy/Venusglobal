@@ -924,6 +924,11 @@
     padding: 24px 20px;
   }
   
+  /* Hide arrows on tablet when cards are stacked */
+  .esg-process-arrow {
+    display: none;
+  }
+  
   .esg-tools-row {
     gap: 20px;
     flex-wrap: wrap;
@@ -945,6 +950,49 @@
   .esg-tool-item:hover .esg-tool-icon::before {
     width: 100px;
     height: 100px;
+  }
+  
+  /* Remove hover effects on tablet and keep green colors */
+  .esg-tool-item:hover {
+    transform: none;
+  }
+  
+  .esg-tool-icon {
+    background: #ffffff !important;
+    border: 2px solid #e5e7eb !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 8px !important;
+  }
+  
+  .esg-tool-item:hover .esg-tool-icon::before {
+    display: none !important;
+  }
+  
+  .esg-tool-icon i {
+    color: #22c55e !important;
+    font-size: 24px !important;
+    z-index: 2 !important;
+    position: relative !important;
+  }
+  
+  .esg-tool-item:hover .esg-tool-icon i {
+    color: #22c55e !important;
+  }
+  
+  .esg-tool-name {
+    color: #22c55e !important;
+    font-size: 12px !important;
+    font-weight: 600 !important;
+    z-index: 2 !important;
+    position: relative !important;
+    text-align: center !important;
+  }
+  
+  .esg-tool-item:hover .esg-tool-name {
+    color: #22c55e !important;
   }
   
   .esg-why-choose-image {
@@ -1055,6 +1103,11 @@
     padding: 20px 16px;
   }
   
+  /* Hide arrows on mobile when cards are stacked */
+  .esg-process-arrow {
+    display: none;
+  }
+  
   .esg-process-step-icon {
     width: 50px;
     height: 50px;
@@ -1097,6 +1150,49 @@
   
   .esg-tool-name {
     font-size: 10px;
+  }
+  
+  /* Remove hover effects on mobile and keep green colors */
+  .esg-tool-item:hover {
+    transform: none;
+  }
+  
+  .esg-tool-icon {
+    background: #ffffff !important;
+    border: 2px solid #e5e7eb !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 6px !important;
+  }
+  
+  .esg-tool-item:hover .esg-tool-icon::before {
+    display: none !important;
+  }
+  
+  .esg-tool-icon i {
+    color: #22c55e !important;
+    font-size: 20px !important;
+    z-index: 2 !important;
+    position: relative !important;
+  }
+  
+  .esg-tool-item:hover .esg-tool-icon i {
+    color: #22c55e !important;
+  }
+  
+  .esg-tool-name {
+    color: #22c55e !important;
+    font-size: 10px !important;
+    font-weight: 600 !important;
+    z-index: 2 !important;
+    position: relative !important;
+    text-align: center !important;
+  }
+  
+  .esg-tool-item:hover .esg-tool-name {
+    color: #22c55e !important;
   }
   
   .esg-why-choose-image {

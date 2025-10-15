@@ -1177,7 +1177,14 @@
   }
 }
 
-.working-process-badge {
+
+/* Desktop Only - Hide on Mobile/Tablet */
+.desktop-only {
+  display: block;
+}
+
+/* Mobile Working Process Styles */
+.working-process-mobile .working-process-badge {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
@@ -1190,12 +1197,12 @@
   margin-bottom: 1.5rem;
 }
 
-.working-process-badge i {
+.working-process-mobile .working-process-badge i {
   font-size: 0.8rem;
   color: #495057;
 }
 
-.working-process-title {
+.working-process-mobile .working-process-title {
   font-size: 3.5rem;
   font-weight: 800;
   color: #212529;
@@ -1203,11 +1210,11 @@
   line-height: 1.1;
 }
 
-.working-process-cta {
+.working-process-mobile .working-process-cta {
   margin-top: 2rem;
 }
 
-.working-process-button {
+.working-process-mobile .working-process-button {
   background: #000;
   color: white;
   border: none;
@@ -1219,41 +1226,24 @@
   transition: all 0.3s ease;
 }
 
-.working-process-button:hover {
+.working-process-mobile .working-process-button:hover {
   background: #333;
   transform: translateY(-2px);
 }
 
-.working-process-cards {
-  position: relative;
-  height: 120vh;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  flex: 1 1;
-  min-width: 0;
-  justify-content: space-around;
-}
-
-.process-card {
+.working-process-mobile .process-card {
   background: white;
   padding: 2.5rem;
   border-radius: 20px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   position: relative;
-  transform: scale(0.8) translateY(100px);
-  opacity: 0;
-  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
   max-width: 400px;
-  margin-left: auto;
-}
-
-.process-card.animate {
-  transform: scale(1) translateY(0);
+  width: 100%;
   opacity: 1;
+  visibility: visible;
 }
 
-.process-card-number {
+.working-process-mobile .process-card-number {
   position: absolute;
   top: 1.5rem;
   right: 1.5rem;
@@ -1263,23 +1253,135 @@
   line-height: 1;
 }
 
-.process-card-icon {
+.working-process-mobile .process-card-icon {
   width: 50px;
   height: 50px;
   margin-bottom: 1.5rem;
 }
 
-.process-card-title {
+.working-process-mobile .process-card-title {
   font-size: 1.5rem;
   font-weight: 700;
   color: #212529;
   margin-bottom: 1rem;
   line-height: 1.2;
+  opacity: 1;
+  visibility: visible;
 }
 
-.process-card-description {
+.working-process-mobile .process-card-description {
   font-size: 1rem;
   color: #6c757d;
   line-height: 1.6;
   margin: 0;
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Mobile/Tablet Only - Hide on Desktop */
+.mobile-tablet-only {
+  display: none;
+}
+
+/* Working Process Mobile Section */
+.working-process-mobile {
+  padding: 80px 0 120px 0;
+  background: #f8f9fa;
+  position: relative;
+  display: none;
+}
+
+.working-process-mobile-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.working-process-mobile-content {
+  text-align: center;
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 8px;
+}
+
+.working-process-mobile-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  align-items: center;
+}
+
+/* Responsive Design for Working Process */
+@media (max-width: 1024px) {
+  /* Hide original working process on tablet/mobile */
+  .desktop-only {
+    display: none;
+  }
+  
+  /* Show mobile working process on tablet/mobile */
+  .working-process-mobile {
+    display: block !important;
+  }
+  
+  /* Force mobile card visibility and styling */
+  .working-process-mobile .process-card {
+    background: white !important;
+    padding: 2.5rem !important;
+    border-radius: 20px !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1) !important;
+    position: relative !important;
+    max-width: 400px !important;
+    width: 100% !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+  
+  .working-process-mobile .process-card-number {
+    position: absolute !important;
+    top: 1.5rem !important;
+    right: 1.5rem !important;
+    font-size: 4rem !important;
+    font-weight: 800 !important;
+    color: #e9ecef !important;
+    line-height: 1 !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+  
+  .working-process-mobile .process-card-icon {
+    width: 50px !important;
+    height: 50px !important;
+    margin-bottom: 1.5rem !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+  
+  .working-process-mobile .process-card-title {
+    font-size: 1.5rem !important;
+    font-weight: 700 !important;
+    color: #212529 !important;
+    margin-bottom: 1rem !important;
+    line-height: 1.2 !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+  
+  .working-process-mobile .process-card-description {
+    font-size: 1rem !important;
+    color: #6c757d !important;
+    line-height: 1.6 !important;
+    margin: 0 !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+}
+
+@media (min-width: 1025px) {
+  /* Hide mobile working process on desktop */
+  .working-process-mobile {
+    display: none;
+  }
 }

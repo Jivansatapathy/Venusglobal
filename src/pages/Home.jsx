@@ -374,8 +374,8 @@ const Home = () => {
             </div>
           </section>
 
-          {/* Working Process Section */}
-          <section className="working-process">
+          {/* Working Process Section - Desktop Only */}
+          <section className="working-process desktop-only">
             <div className="working-process-container">
               <div className="working-process-content">
                 <div className="working-process-badge">
@@ -419,6 +419,53 @@ const Home = () => {
                   className="process-card"
                   ref={(el) => (cardsRef.current[6] = el)}
                 >
+                  <div className="process-card-number">03</div>
+                  <img src="/images/icon7.svg" alt="Launch Icon" className="process-card-icon" />
+                  <h3 className="process-card-title">Launch & Optimize</h3>
+                  <p className="process-card-description">
+                    We launch your project with precision and continuously optimize performance to ensure maximum impact and success.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Working Process Section - Mobile/Tablet Only */}
+          <section className="working-process-mobile">
+            <div className="working-process-mobile-container">
+              <div className="working-process-mobile-content">
+                <div className="working-process-badge">
+                  <i className="fas fa-cube"></i>
+                  <span>Working Process</span>
+                </div>
+                <h2 className="working-process-title">
+                  Explore Our 3 Step Working Process
+                </h2>
+                <div className="working-process-cta">
+                  <button className="working-process-button" onClick={() => window.location.href = '/contact'}>Start Projects</button>
+                </div>
+              </div>
+              
+              <div className="working-process-mobile-cards">
+                <div className="process-card">
+                  <div className="process-card-number">01</div>
+                  <img src="/images/icon5.svg" alt="Discovery Icon" className="process-card-icon" />
+                  <h3 className="process-card-title">Discovery & Strategy</h3>
+                  <p className="process-card-description">
+                    We start by understanding your vision, goals, and target audience to create a comprehensive strategy that aligns with your business objectives.
+                  </p>
+                </div>
+                
+                <div className="process-card">
+                  <div className="process-card-number">02</div>
+                  <img src="/images/icon6.svg" alt="Design Icon" className="process-card-icon" />
+                  <h3 className="process-card-title">Design & Development</h3>
+                  <p className="process-card-description">
+                    Our team creates stunning designs and develops robust solutions using cutting-edge technologies to bring your vision to life.
+                  </p>
+                </div>
+                
+                <div className="process-card">
                   <div className="process-card-number">03</div>
                   <img src="/images/icon7.svg" alt="Launch Icon" className="process-card-icon" />
                   <h3 className="process-card-title">Launch & Optimize</h3>
