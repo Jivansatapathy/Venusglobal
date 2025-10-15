@@ -444,6 +444,10 @@
 .digital-tool-item {
   position: relative;
   cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 .digital-tool-icon {
@@ -806,6 +810,19 @@
   margin: 0;
 }
 
+/* Laptop View - 4-3 Layout */
+@media (min-width: 1025px) {
+  .digital-tools-row:first-child {
+    justify-content: space-between;
+    max-width: 600px;
+  }
+  
+  .digital-tools-row:last-child {
+    justify-content: center;
+    max-width: 480px;
+  }
+}
+
 /* Responsive Design */
 @media (max-width: 1200px) {
   .digital-hero-container {
@@ -924,9 +941,15 @@
     padding: 24px 20px;
   }
   
+  /* Change arrows to point downwards in tablet view when stacked */
+  .digital-process-arrow {
+    transform: rotate(90deg);
+  }
+  
   .digital-tools-row {
     gap: 20px;
     flex-wrap: wrap;
+    justify-content: center;
   }
   
   .digital-tools-row:first-child {
@@ -1055,6 +1078,11 @@
     padding: 20px 16px;
   }
   
+  /* Change arrows to point downwards in mobile view */
+  .digital-process-arrow {
+    transform: rotate(90deg);
+  }
+  
   .digital-process-step-icon {
     width: 50px;
     height: 50px;
@@ -1070,7 +1098,8 @@
   
   .digital-tools-row {
     gap: 16px;
-    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
   }
   
   .digital-tools-row:first-child {
@@ -1079,6 +1108,20 @@
   
   .digital-tools-row:last-child {
     max-width: 100%;
+  }
+  
+  /* Create 2-2-2-1 layout by controlling item width */
+  .digital-tool-item {
+    flex: 0 0 calc(50% - 8px);
+    max-width: calc(50% - 8px);
+  }
+  
+  /* For the 7th item (last one), center it */
+  .digital-tool-item:nth-child(7) {
+    flex: 0 0 100%;
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
   }
   
   .digital-tool-icon {
