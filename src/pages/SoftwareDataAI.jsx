@@ -375,7 +375,7 @@ const SoftwareDataAI = () => {
                 <p className="software-data-faq-contact-description">
                   If you're curious about Software & Data AI solutions or need more information, feel free to reach out—we're here to help!
                 </p>
-                <button className="software-data-faq-contact-button">Contact Us Now</button>
+                <button className="software-data-faq-contact-button" onClick={() => window.location.href = '/contact'}>Contact Us Now</button>
               </div>
             </div>
             

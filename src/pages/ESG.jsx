@@ -352,7 +352,7 @@ const ESG = () => {
                 <p className="esg-faq-contact-description">
                   If you're curious about ESG solutions or need more information, feel free to reach out—we're here to help!
                 </p>
-                <button className="esg-faq-contact-button">Contact Us Now</button>
+                <button className="esg-faq-contact-button" onClick={() => window.location.href = '/contact'}>Contact Us Now</button>
               </div>
             </div>
             

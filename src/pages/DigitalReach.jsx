@@ -384,7 +384,7 @@ const DigitalReach = () => {
                 <p className="digital-faq-contact-description">
                   If you're curious about digital reach solutions or need more information, feel free to reach out—we're here to help!
                 </p>
-                <button className="digital-faq-contact-button">Contact Us Now</button>
+                <button className="digital-faq-contact-button" onClick={() => window.location.href = '/contact'}>Contact Us Now</button>
               </div>
             </div>
             

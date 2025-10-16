@@ -375,7 +375,7 @@ const IATFAuditing = () => {
                 <p className="iatf-faq-contact-description">
                   If you're curious about IATF auditing or need more information, feel free to reach out—we're here to help!
                 </p>
-                <button className="iatf-faq-contact-button">Contact Us Now</button>
+                <button className="iatf-faq-contact-button" onClick={() => window.location.href = '/contact'}>Contact Us Now</button>
               </div>
             </div>
             

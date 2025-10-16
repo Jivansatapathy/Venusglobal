@@ -385,7 +385,7 @@ const AgenticAI = () => {
                  <p className="agentic-faq-contact-description">
                    If you're curious about Agentic AI or need more information, feel free to reach out—we're here to help!
                  </p>
-                 <button className="agentic-faq-contact-button">Contact Us Now</button>
+                 <button className="agentic-faq-contact-button" onClick={() => window.location.href = '/contact'}>Contact Us Now</button>
                </div>
              </div>
              

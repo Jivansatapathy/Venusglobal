@@ -375,7 +375,7 @@ const CloudService = () => {
                 <p className="cloud-faq-contact-description">
                   If you're curious about cloud services or need more information, feel free to reach out—we're here to help!
                 </p>
-                <button className="cloud-faq-contact-button">Contact Us Now</button>
+                <button className="cloud-faq-contact-button" onClick={() => window.location.href = '/contact'}>Contact Us Now</button>
               </div>
             </div>
             
