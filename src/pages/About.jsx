@@ -14,7 +14,7 @@ const About = () => {
           </p>
           <div className="about-hero-buttons">
             <button className="about-hero-button primary" onClick={() => window.location.href = '/#services'}>Our Services</button>
-            <button className="about-hero-button secondary" onClick={() => window.open('https://wa.me/16477616277', '_blank')}>Get Free Consultation</button>
+            <button className="about-hero-button secondary" onClick={() => window.open('https://wa.me/16477220837', '_blank')}>Get Free Consultation</button>
           </div>
         </div>
       </section>
@@ -312,7 +312,7 @@ const About = () => {
           >
             <p className="cta-prompt">Have a project in mind? Just let us know!</p>
             <h2 className="cta-title">Let's Start Talk</h2>
-            <button className="cta-button" onClick={() => window.open('https://wa.me/16477616277', '_blank')}>Connect With Us</button>
+            <button className="cta-button" onClick={() => window.open('https://wa.me/16477220837', '_blank')}>Connect With Us</button>
           </div>
         </div>
       </section>

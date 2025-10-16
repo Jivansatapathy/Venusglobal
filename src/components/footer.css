@@ -111,6 +111,16 @@
   gap: 1rem;
 }
 
+.footer-contact a {
+  color: #fff !important;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-contact a:hover {
+  color: #ccc !important;
+}
+
 .contact-item {
   display: flex;
   align-items: center;

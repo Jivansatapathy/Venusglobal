@@ -250,7 +250,7 @@ const Home = () => {
                 <div className="about-contact">
                   <i className="fas fa-phone"></i>
                   <span>Get free Quote</span>
-                  <span className="contact-number" onClick={() => window.open('https://wa.me/16477616277', '_blank')} style={{cursor: 'pointer'}}>+1 (647) 761-6277</span>
+                  <span className="contact-number" onClick={() => window.open('https://wa.me/16477220837', '_blank')} style={{cursor: 'pointer'}}>647-722-0837</span>
                 </div>
               </div>
             </div>
@@ -578,7 +578,7 @@ const Home = () => {
               >
                 <p className="cta-prompt">Have a project in mind? Just let us know!</p>
                 <h2 className="cta-title">Let's Start Talk</h2>
-                <button className="cta-button" onClick={() => window.open('https://wa.me/16477616277', '_blank')}>Connect With Us</button>
+                <button className="cta-button" onClick={() => window.open('https://wa.me/16477220837', '_blank')}>Connect With Us</button>
               </div>
             </div>
           </section>

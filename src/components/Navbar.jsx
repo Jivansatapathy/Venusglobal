@@ -58,7 +58,7 @@ const Navbar = () => {
           {/* Mobile-only call option */}
           <div className="mobile-only">
             <div className="nav-call">
-              <button className="nav-call-wrap" onClick={() => window.open('https://wa.me/16477616277', '_blank')}>
+              <button className="nav-call-wrap" onClick={() => window.open('https://wa.me/16477220837', '_blank')}>
                 <i className="fas fa-phone"></i>
                 <span>Call Us</span>
               </button>
@@ -71,7 +71,7 @@ const Navbar = () => {
         <div className="nav-contact">
           <div className="contact-info">
             <div className="contact-text">Call Any Time</div>
-            <div className="contact-number" onClick={() => window.open('https://wa.me/16477616277', '_blank')} style={{cursor: 'pointer'}}>+1 (647) 761-6277</div>
+            <div className="contact-number" onClick={() => window.open('https://wa.me/16477220837', '_blank')} style={{cursor: 'pointer'}}>647-722-0837</div>
           </div>
           <div className="contact-icon">
             <i className="fas fa-phone"></i>

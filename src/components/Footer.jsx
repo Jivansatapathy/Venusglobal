@@ -62,13 +62,13 @@ const Footer = () => {
                 <div className="contact-icon">
                   <i className="fas fa-location-dot"></i>
                 </div>
-                <span>Toronto, Ontario, Canada</span>
+                <span>#205 - 1085 Bellamy Road North, Toronto, ON</span>
               </div>
               <div className="contact-item">
                 <div className="contact-icon">
                   <i className="fas fa-phone"></i>
                 </div>
-                <span><a href="https://wa.me/16477616277" target="_blank" rel="noopener noreferrer">+1 (647) 761-6277</a></span>
+                <span><a href="https://wa.me/16477220837" target="_blank" rel="noopener noreferrer">647-722-0837</a></span>
               </div>
               <div className="contact-item">
                 <div className="contact-icon">
