@@ -443,6 +443,84 @@ const DigitalReach = () => {
         </div>
       </section>
 
+      {/* Upper Footer - Contact Details */}
+      <section className="upper-footer">
+        <div className="upper-footer-container">
+          <div className="upper-footer-header">
+            <h2>Our Global Offices</h2>
+            <p>Connect with us across multiple locations worldwide</p>
+          </div>
+          
+          <div className="offices-grid">
+            {/* Toronto Office */}
+            <div className="office-card">
+              <div className="office-header">
+                <div className="office-flag">🇨🇦</div>
+                <h3>Toronto, Canada</h3>
+              </div>
+              <div className="office-details">
+                <div className="office-address">
+                  <i className="fas fa-map-marker-alt"></i>
+                  <span>#205 - 1085 Bellamy Road North, Toronto, ON</span>
+                </div>
+                <div className="office-phone">
+                  <i className="fas fa-phone"></i>
+                  <a href="https://wa.me/16477220837" target="_blank" rel="noopener noreferrer">647-722-0837</a>
+                </div>
+              </div>
+            </div>
+
+            {/* Michigan Office */}
+            <div className="office-card">
+              <div className="office-header">
+                <div className="office-flag">🇺🇸</div>
+                <h3>Michigan, USA</h3>
+              </div>
+              <div className="office-details">
+                <div className="office-address">
+                  <i className="fas fa-map-marker-alt"></i>
+                  <span>880 W Long Lake Rd Ste 225 | Troy, MI 48098</span>
+                </div>
+                <div className="office-phones">
+                  <div className="office-phone">
+                    <i className="fas fa-phone"></i>
+                    <a href="https://wa.me/12482751077" target="_blank" rel="noopener noreferrer">248-275-1077</a>
+                  </div>
+                  <div className="office-phone">
+                    <i className="fas fa-phone"></i>
+                    <a href="https://wa.me/17187150770" target="_blank" rel="noopener noreferrer">718-715-0770</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* India Office */}
+            <div className="office-card">
+              <div className="office-header">
+                <div className="office-flag">🇮🇳</div>
+                <h3>India</h3>
+              </div>
+              <div className="office-details">
+                <div className="office-address">
+                  <i className="fas fa-map-marker-alt"></i>
+                  <span>Mumbai, Surat, Chennai, Hyderabad</span>
+                </div>
+                <div className="office-phones">
+                  <div className="office-phone">
+                    <i className="fas fa-phone"></i>
+                    <a href="https://wa.me/912612601177" target="_blank" rel="noopener noreferrer">+91-261-2601177</a>
+                  </div>
+                  <div className="office-phone">
+                    <i className="fas fa-phone"></i>
+                    <a href="https://wa.me/91261391177" target="_blank" rel="noopener noreferrer">+91-261-391177</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <Footer />
     </div>
   );

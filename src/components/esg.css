@@ -1265,3 +1265,195 @@
     font-size: 14px;
   }
 }
+
+/* Upper Footer Section */
+.upper-footer {
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+  padding: 80px 0;
+  color: #ffffff;
+}
+
+.upper-footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.upper-footer-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.upper-footer-header h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #ffffff;
+}
+
+.upper-footer-header p {
+  font-size: 1.1rem;
+  color: #cccccc;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.offices-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.office-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 30px;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.office-card:hover {
+  transform: translateY(-5px);
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.office-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.office-flag {
+  font-size: 2rem;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+}
+
+.office-header h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin: 0;
+}
+
+.office-details {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.office-company {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #22c55e;
+  margin-bottom: 10px;
+}
+
+.office-address,
+.office-phone {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #cccccc;
+  font-size: 0.95rem;
+}
+
+.office-address i,
+.office-phone i {
+  color: #22c55e;
+  width: 16px;
+  text-align: center;
+}
+
+.office-phone a {
+  color: #ffffff;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.office-phone a:hover {
+  color: #22c55e;
+}
+
+.office-phones {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Responsive Design for Upper Footer */
+@media (max-width: 768px) {
+  .upper-footer {
+    padding: 60px 0;
+  }
+  
+  .upper-footer-header h2 {
+    font-size: 2rem;
+  }
+  
+  .upper-footer-header p {
+    font-size: 1rem;
+  }
+  
+  .offices-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .office-card {
+    padding: 25px;
+  }
+  
+  .office-header h3 {
+    font-size: 1.3rem;
+  }
+  
+  .office-flag {
+    font-size: 1.5rem;
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  .upper-footer {
+    padding: 50px 0;
+  }
+  
+  .upper-footer-header h2 {
+    font-size: 1.8rem;
+  }
+  
+  .upper-footer-header p {
+    font-size: 0.9rem;
+  }
+  
+  .office-card {
+    padding: 20px;
+  }
+  
+  .office-header h3 {
+    font-size: 1.2rem;
+  }
+  
+  .office-company {
+    font-size: 1rem;
+  }
+  
+  .office-address,
+  .office-phone {
+    font-size: 0.9rem;
+  }
+}
