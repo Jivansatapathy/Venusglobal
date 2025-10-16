@@ -1,19 +1,8 @@
 import React from 'react';
-import Lottie from 'lottie-react';
 import '../components/esg.css';
 import Footer from '../components/Footer';
 
 const ESG = () => {
-  // Load Lottie animation data
-  const [animationData, setAnimationData] = React.useState(null);
-
-  React.useEffect(() => {
-    // Load the ESG animation JSON file
-    fetch('/lottie/ESG Animation.json')
-      .then(response => response.json())
-      .then(data => setAnimationData(data))
-      .catch(error => console.error('Error loading Lottie animation:', error));
-  }, []);
 
   // FAQ Accordion functionality
   React.useEffect(() => {
@@ -47,14 +36,6 @@ const ESG = () => {
     };
   }, []);
 
-  const defaultOptions = {
-    loop: true,
-    autoplay: true,
-    animationData: animationData,
-    rendererSettings: {
-      preserveAspectRatio: "xMidYMid slice"
-    }
-  };
 
   return (
     <div className="esg-page">
@@ -76,26 +57,13 @@ const ESG = () => {
               <button className="esg-hero-button">Get Started</button>
             </div>
           </div>
-          <div className="esg-hero-lottie">
-            <div className="esg-lottie-container">
-              {/* Lottie animation */}
-              <Lottie
-                animationData={defaultOptions.animationData}
-                loop={defaultOptions.loop}
-                autoplay={defaultOptions.autoplay}
-                style={{ width: '100%', height: '100%' }}
-                rendererSettings={defaultOptions.rendererSettings}
+          <div className="esg-hero-image">
+            <div className="esg-image-container">
+              <img 
+                src="/images/esganimation.jpg" 
+                alt="ESG Solutions" 
+                className="esg-hero-img"
               />
-              {/* Fallback placeholder when no animation data */}
-              {!defaultOptions.animationData && (
-                <div className="lottie-placeholder">
-                  <div className="lottie-placeholder-content">
-                    <i className="fas fa-leaf"></i>
-                    <p>ESG Animation</p>
-                    <small>Add your Lottie JSON file</small>
-                  </div>
-                </div>
-              )}
             </div>
           </div>
         </div>

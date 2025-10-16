@@ -86,13 +86,13 @@
   transform: translateY(-2px);
 }
 
-.esg-hero-lottie {
+.esg-hero-image {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.esg-lottie-container {
+.esg-image-container {
   width: 100%;
   height: 500px;
   position: relative;
@@ -104,36 +104,13 @@
   justify-content: center;
 }
 
-.lottie-placeholder {
+.esg-hero-img {
   width: 100%;
   height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  object-fit: cover;
+  border-radius: 12px;
 }
 
-.lottie-placeholder-content {
-  text-align: center;
-  color: #6c757d;
-}
-
-.lottie-placeholder-content i {
-  font-size: 48px;
-  margin-bottom: 16px;
-  color: #22c55e;
-}
-
-.lottie-placeholder-content p {
-  font-size: 18px;
-  font-weight: 600;
-  margin: 0 0 8px 0;
-}
-
-.lottie-placeholder-content small {
-  font-size: 14px;
-  color: #adb5bd;
-}
 
 /* Benefits Section */
 .esg-benefits {
@@ -845,7 +822,7 @@
     font-size: 42px;
   }
   
-  .esg-lottie-container {
+  .esg-image-container {
     height: 400px;
   }
   
