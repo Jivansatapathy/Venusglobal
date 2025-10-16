@@ -157,6 +157,25 @@ const Home = () => {
                   <div className="ticker-circle"></div>
                   <div className="company-logo">Appili</div>
                 </div>
+
+                <div className="inner-ticker-wrapper">
+                  <div className="ticker-circle"></div>
+                  <div className="company-logo">GIGL</div>
+                  <div className="ticker-circle"></div>
+                  <div className="company-logo">LeddarTech</div>
+                  <div className="ticker-circle"></div>
+                  <div className="company-logo">Sanofi</div>
+                  <div className="ticker-circle"></div>
+                  <div className="company-logo">Apobiologix</div>
+                  <div className="ticker-circle"></div>
+                  <div className="company-logo">Ford</div>
+                  <div className="ticker-circle"></div>
+                  <div className="company-logo">GM</div>
+                  <div className="ticker-circle"></div>
+                  <div className="company-logo">Woodmizer</div>
+                  <div className="ticker-circle"></div>
+                  <div className="company-logo">Appili</div>
+                </div>
               </div>
             </div>
           </div>
