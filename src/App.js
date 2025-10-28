@@ -10,6 +10,8 @@ import SoftwareDataAI from './pages/SoftwareDataAI';
 import CloudService from './pages/CloudService';
 import IATFAuditing from './pages/IATFAuditing';
 import Contact from './pages/Contact';
+import Blogs from './pages/Blogs';
+import BlogDetail from './pages/BlogDetail';
 import './App.css';
 
 function ScrollToTop() {
@@ -36,6 +38,8 @@ function App() {
           <Route path="/cloud-service" element={<CloudService />} />
           <Route path="/iatf-auditing" element={<IATFAuditing />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/blogs" element={<Blogs />} />
+          <Route path="/blog/:slug" element={<BlogDetail />} />
           {/* Add more routes here as we create more pages */}
         </Routes>
       </div>

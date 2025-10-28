@@ -54,6 +54,9 @@ const Navbar = () => {
             <li className={`nav-item ${location.pathname === '/contact' ? 'active' : ''}`}>
               <Link to="/contact" className="nav-link" onClick={handleLinkClick}>Contact Us</Link>
             </li>
+            <li className={`nav-item ${location.pathname === '/blogs' ? 'active' : ''}`}>
+              <Link to="/blogs" className="nav-link" onClick={handleLinkClick}>Blogs</Link>
+            </li>
           </ul>
           {/* Mobile-only call option */}
           <div className="mobile-only">
