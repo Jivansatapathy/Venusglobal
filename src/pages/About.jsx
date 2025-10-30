@@ -26,34 +26,34 @@ const About = () => {
             <div className="stat-card">
               <div className="stat-card-header">
                 <img src="/images/icon1.svg" alt="Document Icon" className="stat-icon" />
-                <div className="stat-number">200+</div>
+                <div className="stat-number">10+</div>
               </div>
               <div className="stat-divider"></div>
-              <p className="stat-description">We deliver great work always</p>
+              <p className="stat-description">Great Works</p>
             </div>
 
             <div className="stat-card">
               <div className="stat-card-header">
                 <img src="/images/icon2.svg" alt="Briefcase Icon" className="stat-icon" />
-                <div className="stat-number">10+</div>
+                <div className="stat-number">16+</div>
               </div>
               <div className="stat-divider"></div>
-              <p className="stat-description">Experience you can count on</p>
+              <p className="stat-description">Years Experience</p>
             </div>
 
             <div className="stat-card">
               <div className="stat-card-header">
                 <img src="/images/icon3.svg" alt="Trophy Icon" className="stat-icon" />
-                <div className="stat-number">20+</div>
+                <div className="stat-number">2</div>
               </div>
               <div className="stat-divider"></div>
-              <p className="stat-description">Award-Winning Work, Trusted Results</p>
+              <p className="stat-description">Award-Winning Work</p>
             </div>
 
             <div className="stat-card">
               <div className="stat-card-header">
                 <img src="/images/icon4.svg" alt="Users Icon" className="stat-icon" />
-                <div className="stat-number">5K+</div>
+                <div className="stat-number">100+</div>
               </div>
               <div className="stat-divider"></div>
               <p className="stat-description">We have happy Clients worldwide</p>
