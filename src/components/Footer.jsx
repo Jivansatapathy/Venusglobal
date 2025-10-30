@@ -59,7 +59,7 @@ const Footer = () => {
             <h3>Contact Info</h3>
             <div className="footer-contact">
               <div className="contact-item">
-                <div className="contact-icon">
+                <div className="contact-icon location">
                   <i className="fas fa-location-dot"></i>
                 </div>
                 <span>#205 - 1085 Bellamy Road North, Toronto, ON</span>

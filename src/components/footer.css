@@ -129,12 +129,28 @@
 }
 
 .contact-icon {
-  width: 20px;
-  height: 20px;
+  width: 32px;
+  height: 32px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #007bff;
+  border-radius: 50%;
+  background: #ffffff;
+  color: #000000;
+}
+
+.contact-icon i {
+  font-size: 14px;
+}
+
+/* Larger circle specifically for the location icon */
+.contact-icon.location {
+  width: 55px;
+  height: 35px;
+}
+
+.contact-icon.location i {
+  font-size: 18px;
 }
 
 .footer-bottom {
@@ -211,5 +227,10 @@
   .social-link {
     width: 35px;
     height: 35px;
+  }
+
+  /* Mobile: adjust location icon width */
+  .contact-icon.location {
+    width: 40px;
   }
 }
