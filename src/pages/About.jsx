@@ -329,7 +329,7 @@ const About = () => {
             {/* Toronto Office */}
             <div className="office-card">
               <div className="office-header">
-                <div className="office-flag">🇨🇦</div>
+                <div className="office-flag"><img src="https://flagcdn.com/w40/ca.png" alt="Canada Flag" style={{width: '24px', height: '16px', objectFit: 'cover'}} /></div>
                 <h3>Toronto, Canada</h3>
               </div>
               <div className="office-details">
@@ -347,7 +347,7 @@ const About = () => {
             {/* Michigan Office */}
             <div className="office-card">
               <div className="office-header">
-                <div className="office-flag">🇺🇸</div>
+                <div className="office-flag"><img src="https://flagcdn.com/w40/us.png" alt="United States Flag" style={{width: '24px', height: '16px', objectFit: 'cover'}} /></div>
                 <h3>Michigan, USA</h3>
               </div>
               <div className="office-details">
@@ -371,7 +371,7 @@ const About = () => {
             {/* India Office */}
             <div className="office-card">
               <div className="office-header">
-                <div className="office-flag">🇮🇳</div>
+                <div className="office-flag"><img src="https://flagcdn.com/w40/in.png" alt="India Flag" style={{width: '24px', height: '16px', objectFit: 'cover'}} /></div>
                 <h3>India</h3>
               </div>
               <div className="office-details">

@@ -212,7 +212,7 @@ const Home = () => {
                   </div>
                   <div className="about-us-card-typography">
                     <div className="about-us-card-counter-wrap">
-                      <h3 className="stat-number">200+</h3>
+                      <h3 className="stat-number">10+</h3>
                     </div>
                     <p className="about-us-card-description">We deliver great work always</p>
                   </div>
@@ -227,7 +227,7 @@ const Home = () => {
                   </div>
                   <div className="about-us-card-typography">
                     <div className="about-us-card-counter-wrap">
-                      <h3 className="stat-number">10+</h3>
+                      <h3 className="stat-number">16+</h3>
                     </div>
                     <p className="about-us-card-description">Experience you can count on</p>
                   </div>
@@ -242,9 +242,9 @@ const Home = () => {
                   </div>
                   <div className="about-us-card-typography">
                     <div className="about-us-card-counter-wrap">
-                      <h3 className="stat-number">20+</h3>
+                      <h3 className="stat-number">2</h3>
                     </div>
-                    <p className="about-us-card-description">Award-Winning Work, Trusted Results</p>
+                    <p className="about-us-card-description">Award-Winning Work</p>
                   </div>
                 </div>
                 
@@ -257,7 +257,7 @@ const Home = () => {
                   </div>
                   <div className="about-us-card-typography">
                     <div className="about-us-card-counter-wrap">
-                      <h3 className="stat-number">5K+</h3>
+                      <h3 className="stat-number">100+</h3>
                     </div>
                     <p className="about-us-card-description">We have happy Clients worldwide</p>
                   </div>
