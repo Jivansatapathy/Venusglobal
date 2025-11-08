@@ -1,0 +1,450 @@
+{
+  "home": {
+    "hero": {
+      "badge": "Creative Ideas That Inspire Growth",
+      "titleLine1": "Driving Growth Through",
+      "titleLine2": "Technology, Compliance & Innovation",
+      "description": "Maximise Your Technology Investment, From SEO and Agentic AI to IATF compliance, ESG solutions, Managed IT Services, and Staff Augmentation — we deliver end-to-end expertise to help your business stay competitive and future-proof.",
+      "ctaButton": "Get Started",
+      "image": "/images/01.png"
+    },
+    "trustedPartners": {
+      "badge": "Trusted Partners Worldwide for Success",
+      "companies": [
+        "GIGL",
+        "LeddarTech",
+        "Sanofi",
+        "Apobiologix",
+        "Ford",
+        "GM",
+        "Woodmizer",
+        "Appili"
+      ]
+    },
+    "about": {
+      "badge": "About Us",
+      "title": "Who We Are. Learn About us",
+      "description": "We are a dynamic team of innovators, storytellers, and visionaries dedicated to transforming ideas into extraordinary experiences.",
+      "image": "/images/03.png",
+      "stats": [
+        {
+          "number": "10+",
+          "description": "We deliver great work always",
+          "icon": "/images/icon1.svg"
+        },
+        {
+          "number": "16+",
+          "description": "Experience you can count on",
+          "icon": "/images/icon2.svg"
+        },
+        {
+          "number": "2",
+          "description": "Award-Winning Work",
+          "icon": "/images/icon3.svg"
+        },
+        {
+          "number": "100+",
+          "description": "We have happy Clients worldwide",
+          "icon": "/images/icon4.svg"
+        }
+      ],
+      "moreAboutButton": "More About Us",
+      "getQuoteText": "Get free Quote",
+      "phoneNumber": "647-722-0837",
+      "whatsappLink": "https://wa.me/16477220837"
+    },
+    "services": {
+      "badge": "Services",
+      "title": "Your Needs, Our Expertise",
+      "description": "Your Vision, Our Expertise — Together, we bring ideas to life with tailored solutions that deliver real results. Let's build something amazing.",
+      "items": [
+        {
+          "number": "01",
+          "title": "Software Development & Data AI",
+          "description": "Cutting-edge software development and AI solutions that transform your business operations. We build intelligent applications, implement machine learning models, and create data-driven solutions that drive innovation and efficiency.",
+          "link": "/software-data-ai",
+          "image": "/images/Software & Data.jpg"
+        },
+        {
+          "number": "02",
+          "title": "Agentic AI Solutions",
+          "description": "Next-generation autonomous AI agents that can reason, plan, and execute complex tasks independently. Our agentic AI systems learn, adapt, and make decisions to optimize your business processes and drive intelligent automation.",
+          "link": "/agentic-ai",
+          "image": "/images/Agentic AI.jpg"
+        },
+        {
+          "number": "03",
+          "title": "Cloud Services & Infrastructure",
+          "description": "Comprehensive cloud solutions that scale with your business. From cloud migration and architecture design to managed services and DevOps, we ensure your infrastructure is secure, scalable, and cost-effective.",
+          "link": "/cloud-service",
+          "image": "/images/AI & Cloud.jpg"
+        },
+        {
+          "number": "04",
+          "title": "Digital Marketing & Reach",
+          "description": "Strategic digital marketing solutions that expand your market reach and drive growth. We combine SEO, social media, content marketing, and data analytics to create campaigns that deliver measurable results and ROI.",
+          "link": "/digital-reach",
+          "image": "/images/SEO.webp"
+        },
+        {
+          "number": "05",
+          "title": "ESG Solutions & Sustainability",
+          "description": "Environmental, Social, and Governance solutions that help your organization meet sustainability goals and regulatory requirements. We provide ESG reporting, compliance management, and sustainable technology implementations.",
+          "link": "/esg",
+          "image": "/images/ESG.jpg"
+        },
+        {
+          "number": "06",
+          "title": "IATF Auditing & Compliance",
+          "description": "Specialized IATF 16949 automotive quality management system auditing and compliance services. We help automotive suppliers achieve and maintain certification while improving quality processes and reducing risks.",
+          "link": "/iatf-auditing",
+          "image": "/images/IATF.jpg"
+        }
+      ]
+    },
+    "workingProcess": {
+      "badge": "Working Process",
+      "title": "Explore Our 3 Step Working Process",
+      "startProjectsButton": "Start Projects",
+      "steps": [
+        {
+          "number": "01",
+          "title": "Discovery & Strategy",
+          "description": "We start by understanding your vision, goals, and target audience to create a comprehensive strategy that aligns with your business objectives.",
+          "icon": "/images/icon5.svg"
+        },
+        {
+          "number": "02",
+          "title": "Design & Development",
+          "description": "Our team creates stunning designs and develops robust solutions using cutting-edge technologies to bring your vision to life.",
+          "icon": "/images/icon6.svg"
+        },
+        {
+          "number": "03",
+          "title": "Launch & Optimize",
+          "description": "We launch your project with precision and continuously optimize performance to ensure maximum impact and success.",
+          "icon": "/images/icon7.svg"
+        }
+      ]
+    },
+    "skills": [
+      "Software Development",
+      "Agentic AI",
+      "Cloud Services",
+      "Data Analytics",
+      "Machine Learning",
+      "Digital Marketing",
+      "ESG Solutions",
+      "IATF Auditing"
+    ],
+    "cta": {
+      "prompt": "Have a project in mind? Just let us know!",
+      "title": "Let's Start Talk",
+      "button": "Connect With Us",
+      "whatsappLink": "https://wa.me/16477220837",
+      "backgroundImage": "/images/bg.jpg"
+    },
+    "offices": [
+      {
+        "country": "Canada",
+        "city": "Toronto, Canada",
+        "flag": "https://flagcdn.com/w40/ca.png",
+        "address": "#205 - 1085 Bellamy Road North, Toronto, ON",
+        "phones": [
+          {
+            "number": "647-722-0837",
+            "whatsapp": "https://wa.me/16477220837"
+          }
+        ]
+      },
+      {
+        "country": "USA",
+        "city": "Michigan, USA",
+        "flag": "https://flagcdn.com/w40/us.png",
+        "address": "880 W Long Lake Rd Ste 225 | Troy, MI 48098",
+        "phones": [
+          {
+            "number": "248-275-1077",
+            "whatsapp": "https://wa.me/12482751077"
+          },
+          {
+            "number": "718-715-0770",
+            "whatsapp": "https://wa.me/17187150770"
+          }
+        ]
+      },
+      {
+        "country": "India",
+        "city": "India",
+        "flag": "https://flagcdn.com/w40/in.png",
+        "address": "Mumbai, Surat, Chennai, Hyderabad",
+        "phones": [
+          {
+            "number": "+91-261-2601177",
+            "whatsapp": "https://wa.me/912612601177"
+          },
+          {
+            "number": "+91-261-391177",
+            "whatsapp": "https://wa.me/91261391177"
+          }
+        ]
+      }
+    ]
+  },
+  "about": {
+    "hero": {
+      "title": "About Us",
+      "description": "We're Venus Global Technology, a leading provider of innovative technology solutions and digital transformation services. We partner with businesses to drive growth through cutting-edge AI, cloud services, software development, and compliance solutions. From concept to execution, we blend strategic thinking with advanced technology to deliver results that don't just meet expectations — they exceed them. Let's transform your business together.",
+      "servicesButton": "Our Services",
+      "consultationButton": "Get Free Consultation",
+      "consultationLink": "https://wa.me/16477220837"
+    },
+    "stats": [
+      {
+        "number": "10+",
+        "description": "Great Works",
+        "icon": "/images/icon1.svg"
+      },
+      {
+        "number": "16+",
+        "description": "Years Experience",
+        "icon": "/images/icon2.svg"
+      },
+      {
+        "number": "2",
+        "description": "Award-Winning Work",
+        "icon": "/images/icon3.svg"
+      },
+      {
+        "number": "100+",
+        "description": "We have happy Clients worldwide",
+        "icon": "/images/icon4.svg"
+      }
+    ],
+    "content": {
+      "badge": "About Us",
+      "title": "Your Success, Our Priority.",
+      "description": "We're dedicated to helping you achieve your goals with a simple, user-friendly experience. We believe our commitment to your success sets us apart.",
+      "image": "/images/03.png",
+      "features": [
+        {
+          "title": "Innovate to Lead",
+          "description": "Foster creativity and embrace innovation to stay ahead of the competition."
+        },
+        {
+          "title": "Optimize for Growth",
+          "description": "Streamline processes and resources to maximize efficiency and profitability."
+        },
+        {
+          "title": "Engage with Purpose",
+          "description": "Build meaningful relationships with customers through authentic engagement."
+        },
+        {
+          "title": "Scale with Strategy",
+          "description": "Expand your business by implementing structured, scalable plans."
+        }
+      ],
+      "startProjectsButton": "Start Projects"
+    }
+  },
+  "contact": {
+    "hero": {
+      "title": "Contact Us",
+      "description": "Get in touch with our team to discuss your project requirements, learn more about our services, or schedule a consultation. We're here to help you achieve your business goals with innovative solutions and expert guidance."
+    },
+    "form": {
+      "badge": "Get in touch",
+      "title": "Send Your Message",
+      "successMessage": "Message sent successfully! We'll get back to you soon.",
+      "errorMessage": "There was an error sending your message. Please try again."
+    },
+    "image": "/images/06.jpg"
+  },
+  "navbar": {
+    "logo": "/images/02.png",
+    "logoAlt": "Ritovex Logo",
+    "menuItems": [
+      {
+        "label": "Home",
+        "path": "/"
+      },
+      {
+        "label": "About Us",
+        "path": "/about"
+      },
+      {
+        "label": "Services",
+        "path": "#",
+        "submenu": [
+          {
+            "label": "Agentic AI",
+            "path": "/agentic-ai"
+          },
+          {
+            "label": "ESG",
+            "path": "/esg"
+          },
+          {
+            "label": "Digital Reach",
+            "path": "/digital-reach"
+          },
+          {
+            "label": "Software & Data AI",
+            "path": "/software-data-ai"
+          },
+          {
+            "label": "Cloud Service",
+            "path": "/cloud-service"
+          },
+          {
+            "label": "IATF Auditing",
+            "path": "/iatf-auditing"
+          }
+        ]
+      },
+      {
+        "label": "Contact Us",
+        "path": "/contact"
+      },
+      {
+        "label": "Blogs",
+        "path": "/blogs"
+      }
+    ],
+    "callText": "Call Any Time",
+    "phoneNumber": "647-722-0837",
+    "whatsappLink": "https://wa.me/16477220837"
+  },
+  "footer": {
+    "brand": {
+      "name": "Venus Global Tech",
+      "description": "Leading provider of innovative technology solutions, digital transformation, and cutting-edge software development services. We help businesses stay competitive and future-proof through technology, compliance & innovation.",
+      "socialLinks": [
+        {
+          "platform": "Facebook",
+          "url": "#",
+          "icon": "fab fa-facebook-f"
+        },
+        {
+          "platform": "Twitter",
+          "url": "#",
+          "icon": "fab fa-twitter"
+        },
+        {
+          "platform": "Instagram",
+          "url": "#",
+          "icon": "fab fa-instagram"
+        },
+        {
+          "platform": "LinkedIn",
+          "url": "#",
+          "icon": "fab fa-linkedin-in"
+        }
+      ]
+    },
+    "quickLinks": {
+      "title": "Quick Links",
+      "links": [
+        {
+          "label": "Home",
+          "url": "/"
+        },
+        {
+          "label": "About Us",
+          "url": "/about"
+        },
+        {
+          "label": "Contact Us",
+          "url": "/contact"
+        },
+        {
+          "label": "Get Free Quote",
+          "url": "https://wa.me/16477616277"
+        }
+      ]
+    },
+    "services": {
+      "title": "Our Services",
+      "links": [
+        {
+          "label": "Software & Data AI",
+          "url": "/software-data-ai"
+        },
+        {
+          "label": "Agentic AI Solutions",
+          "url": "/agentic-ai"
+        },
+        {
+          "label": "Cloud Services",
+          "url": "/cloud-service"
+        },
+        {
+          "label": "Digital Marketing",
+          "url": "/digital-reach"
+        },
+        {
+          "label": "ESG Solutions",
+          "url": "/esg"
+        },
+        {
+          "label": "IATF Auditing",
+          "url": "/iatf-auditing"
+        }
+      ]
+    },
+    "contact": {
+      "title": "Contact Info",
+      "address": "#205 - 1085 Bellamy Road North, Toronto, ON",
+      "phone": "647-722-0837",
+      "phoneWhatsapp": "https://wa.me/16477220837",
+      "email": "info@venusglobaltech.com"
+    },
+    "copyright": "© 2024 Venus Global Technology. All rights reserved.",
+    "bottomLinks": [
+      {
+        "label": "Privacy Policy",
+        "url": "#privacy"
+      },
+      {
+        "label": "Terms of Service",
+        "url": "#terms"
+      },
+      {
+        "label": "Cookie Policy",
+        "url": "#cookies"
+      }
+    ]
+  },
+  "services": {
+    "agenticAI": {
+      "title": "Agentic AI Solutions",
+      "description": "Next-generation autonomous AI agents",
+      "content": "Your agentic AI content here..."
+    },
+    "esg": {
+      "title": "ESG Solutions",
+      "description": "Environmental, Social, and Governance solutions",
+      "content": "Your ESG content here..."
+    },
+    "digitalReach": {
+      "title": "Digital Marketing & Reach",
+      "description": "Strategic digital marketing solutions",
+      "content": "Your digital reach content here..."
+    },
+    "softwareDataAI": {
+      "title": "Software Development & Data AI",
+      "description": "Cutting-edge software development",
+      "content": "Your software & data AI content here..."
+    },
+    "cloudService": {
+      "title": "Cloud Services & Infrastructure",
+      "description": "Comprehensive cloud solutions",
+      "content": "Your cloud service content here..."
+    },
+    "iatfAuditing": {
+      "title": "IATF Auditing & Compliance",
+      "description": "Specialized IATF 16949 auditing",
+      "content": "Your IATF auditing content here..."
+    }
+  }
+}

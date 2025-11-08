@@ -1,79 +1,135 @@
-# Sassico React Website
+# Venus Global Technology
 
-A modern React website built with individual CSS files for each component, replicating the SAAS Four template design.
+A modern web application with separate client and server architecture.
 
-## 🚀 Getting Started
+## Project Structure
+
+```
+venus-tech/
+├── client/          # React frontend application
+├── server/          # Express backend API server
+└── README.md        # This file
+```
+
+## Getting Started
 
 ### Prerequisites
-- Node.js (version 14 or higher)
+
+- Node.js (v14 or higher)
 - npm or yarn
 
 ### Installation
 
-1. **Install dependencies:**
+1. **Install Client Dependencies:**
    ```bash
+   cd client
    npm install
    ```
 
-2. **Start the development server:**
+2. **Install Server Dependencies:**
    ```bash
-   npm start
+   cd server
+   npm install
    ```
 
-3. **Open your browser:**
-   Navigate to `http://localhost:3000` to view the website.
+### Running the Application
 
-## 📁 Project Structure
+#### Development Mode
+
+1. **Start the Backend Server:**
+   ```bash
+   cd server
+   npm start
+   # or for auto-reload:
+   npm run dev
+   ```
+   Server runs on: `http://localhost:5000`
+
+2. **Start the Frontend (in a new terminal):**
+   ```bash
+   cd client
+   npm start
+   ```
+   Frontend runs on: `http://localhost:3000`
+
+#### Production Mode
+
+1. **Build the Client:**
+   ```bash
+   cd client
+   npm run build
+   ```
+
+2. **Start the Server:**
+   ```bash
+   cd server
+   npm start
+   ```
+   The server will serve the built React app from `client/build`
+
+## Admin Panel
+
+- URL: `http://localhost:3000/admin`
+- Default Password: `admin123`
+
+To change the password, create a `.env` file in the `server/` directory:
+```
+ADMIN_PASSWORD=your-new-password
+ADMIN_TOKEN=your-secure-token
+```
+
+## Environment Variables
+
+### Server (.env in server/ directory)
 
 ```
-src/
-├── pages/
-│   └── Home.jsx             # Home page component
-├── components/
-│   └── home.css             # Home page styles
-├── App.js                   # Main App component
-├── App.css                  # Global styles
-└── index.js                 # Entry point
+PORT=5000
+ADMIN_PASSWORD=admin123
+ADMIN_TOKEN=admin-token-123
+EMAIL_USER=your-email@gmail.com
+EMAIL_PASS=your-app-password
+RECIPIENT_EMAIL=recipient@example.com
 ```
 
-## 🎨 Features
+### Client
 
-- **React Components**: Modular component structure
-- **Individual CSS**: Each component has its own CSS file
-- **Responsive Design**: Mobile-first approach
-- **Modern Animations**: Smooth transitions and hover effects
-- **React Router**: Ready for multiple pages
+The client uses a proxy to connect to the backend. No environment variables needed for development.
 
-## 🛠️ Available Scripts
+## API Endpoints
 
-- `npm start` - Runs the app in development mode
-- `npm build` - Builds the app for production
-- `npm test` - Launches the test runner
-- `npm eject` - Ejects from Create React App (one-way operation)
+- `GET /api/content` - Get all content
+- `GET /api/content/:section` - Get specific section
+- `PUT /api/content/:section` - Update section (requires auth)
+- `PUT /api/content/:section/:subsection` - Update subsection (requires auth)
+- `POST /api/admin/login` - Admin login
+- `POST /api/contact` - Contact form submission
 
-## 📱 Responsive Breakpoints
+## Project Structure Details
 
-- **Desktop**: 1200px and above
-- **Tablet**: 768px - 1199px
-- **Mobile**: 480px - 767px
-- **Small Mobile**: Below 480px
+### Client (`/client`)
+- React application
+- Source code in `src/`
+- Public assets in `public/`
+- Build output in `build/` (generated)
 
-## 🎯 Next Steps
+### Server (`/server`)
+- Express API server
+- Content data in `data/content.json`
+- Server configuration in `server.js`
 
-To add more pages:
+## Development
 
-1. Create a new JSX file in `src/pages/`
-2. Add its individual CSS file in `src/components/`
-3. Update the routing in `App.js`
-4. Add navigation links
+- Client development server: `http://localhost:3000`
+- Backend API server: `http://localhost:5000`
+- The client automatically proxies API requests to the backend
 
-## 📝 Customization
+## Deployment
 
-Each component has its own CSS file, making it easy to:
-- Modify styles without affecting other components
-- Maintain clean, organized code
-- Scale the project efficiently
+1. Build the client: `cd client && npm run build`
+2. The server will serve the built files from `client/build`
+3. Set environment variables in production
+4. Start the server: `cd server && npm start`
 
----
+## License
 
-**Built with React and modern web technologies**
+MIT
