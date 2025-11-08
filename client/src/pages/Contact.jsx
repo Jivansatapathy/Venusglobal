@@ -29,10 +29,15 @@ const Contact = () => {
 
     try {
       // Submit to cloud function
-      const response = await fetch('https://submitform2-cyucomi7gq-uc.a.run.app', {
+      // Note: If you get 405 error, the function might need a specific path
+      // Common paths: '', '/submit', '/api/submit', '/api/contact'
+      const cloudFunctionUrl = 'https://submitform2-cyucomi7gq-uc.a.run.app';
+      
+      const response = await fetch(cloudFunctionUrl, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
+          'Accept': 'application/json',
         },
         body: JSON.stringify({
           name: formData.name,
@@ -42,6 +47,10 @@ const Contact = () => {
           inquiry: formData.inquiry
         }),
       });
+
+      // Log response for debugging
+      console.log('Response status:', response.status);
+      console.log('Response headers:', response.headers);
 
       if (response.ok) {
         setSubmitStatus('success');
@@ -53,11 +62,25 @@ const Contact = () => {
           inquiry: ''
         });
       } else {
+        // Get error message from response
+        let errorMessage = `Server error: ${response.status}`;
+        try {
+          const errorData = await response.json();
+          errorMessage = errorData.error || errorData.message || errorMessage;
+        } catch (e) {
+          const errorText = await response.text();
+          if (errorText) {
+            errorMessage = errorText;
+          }
+        }
+        console.error('Form submission error:', errorMessage);
         setSubmitStatus('error');
+        alert(`Failed to submit form: ${errorMessage}`);
       }
     } catch (error) {
       console.error('Error submitting form:', error);
       setSubmitStatus('error');
+      alert(`Network error: ${error.message}. Please check your connection and try again.`);
     } finally {
       setIsSubmitting(false);
     }
