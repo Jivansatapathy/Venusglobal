@@ -337,26 +337,34 @@ const AgenticAI = () => {
                Get intelligent automation, faster implementation, and AI solutions that evolve with your business. We focus on innovation, efficiency, and transformative results for every AI project.
              </p>
              <div className="agentic-why-choose-divider"></div>
-             <div className="agentic-why-choose-benefits">
-               <div className="agentic-why-choose-benefit-item">
-                 <div className="agentic-why-choose-benefit-icon">
-                   <i className="fas fa-check"></i>
-                 </div>
-                 <div className="agentic-why-choose-benefit-content">
-                   <h3 className="agentic-why-choose-benefit-title">Intelligent & Autonomous</h3>
-                   <p className="agentic-why-choose-benefit-description">Our AI agents think, learn, and act independently to solve complex business challenges.</p>
-                 </div>
-               </div>
-               <div className="agentic-why-choose-benefit-item">
-                 <div className="agentic-why-choose-benefit-icon">
-                   <i className="fas fa-check"></i>
-                 </div>
-                 <div className="agentic-why-choose-benefit-content">
-                   <h3 className="agentic-why-choose-benefit-title">Scalable & Future-Ready</h3>
-                   <p className="agentic-why-choose-benefit-description">Every solution is designed to grow and adapt with your evolving business needs.</p>
-                 </div>
-               </div>
-             </div>
+            <div className="agentic-why-choose-benefits">
+              <div className="agentic-why-choose-benefit-flip-card">
+                <div className="agentic-why-choose-benefit-flip-inner">
+                  <div className="agentic-why-choose-benefit-flip-front">
+                    <div className="agentic-why-choose-benefit-icon">
+                      <i className="fas fa-check"></i>
+                    </div>
+                    <h3 className="agentic-why-choose-benefit-title">Intelligent & Autonomous</h3>
+                  </div>
+                  <div className="agentic-why-choose-benefit-flip-back">
+                    <p className="agentic-why-choose-benefit-description">Our AI agents think, learn, and act independently to solve complex business challenges.</p>
+                  </div>
+                </div>
+              </div>
+              <div className="agentic-why-choose-benefit-flip-card">
+                <div className="agentic-why-choose-benefit-flip-inner">
+                  <div className="agentic-why-choose-benefit-flip-front">
+                    <div className="agentic-why-choose-benefit-icon">
+                      <i className="fas fa-check"></i>
+                    </div>
+                    <h3 className="agentic-why-choose-benefit-title">Scalable & Future-Ready</h3>
+                  </div>
+                  <div className="agentic-why-choose-benefit-flip-back">
+                    <p className="agentic-why-choose-benefit-description">Every solution is designed to grow and adapt with your evolving business needs.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
            </div>
          </div>
        </section>

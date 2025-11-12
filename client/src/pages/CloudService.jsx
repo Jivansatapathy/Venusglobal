@@ -328,22 +328,30 @@ const CloudService = () => {
             </p>
             <div className="cloud-why-choose-divider"></div>
             <div className="cloud-why-choose-benefits">
-              <div className="cloud-why-choose-benefit-item">
-                <div className="cloud-why-choose-benefit-icon">
-                  <i className="fas fa-check"></i>
-                </div>
-                <div className="cloud-why-choose-benefit-content">
-                  <h3 className="cloud-why-choose-benefit-title">Expert & Reliable</h3>
-                  <p className="cloud-why-choose-benefit-description">Our cloud solutions are built by experts with proven reliability and enterprise-grade security.</p>
+              <div className="cloud-why-choose-benefit-flip-card">
+                <div className="cloud-why-choose-benefit-flip-inner">
+                  <div className="cloud-why-choose-benefit-flip-front">
+                    <div className="cloud-why-choose-benefit-icon">
+                      <i className="fas fa-check"></i>
+                    </div>
+                    <h3 className="cloud-why-choose-benefit-title">Expert & Reliable</h3>
+                  </div>
+                  <div className="cloud-why-choose-benefit-flip-back">
+                    <p className="cloud-why-choose-benefit-description">Our cloud solutions are built by experts with proven reliability and enterprise-grade security.</p>
+                  </div>
                 </div>
               </div>
-              <div className="cloud-why-choose-benefit-item">
-                <div className="cloud-why-choose-benefit-icon">
-                  <i className="fas fa-check"></i>
-                </div>
-                <div className="cloud-why-choose-benefit-content">
-                  <h3 className="cloud-why-choose-benefit-title">Scalable & Future-Ready</h3>
-                  <p className="cloud-why-choose-benefit-description">Every solution is designed to scale and adapt with your evolving business needs and growth.</p>
+              <div className="cloud-why-choose-benefit-flip-card">
+                <div className="cloud-why-choose-benefit-flip-inner">
+                  <div className="cloud-why-choose-benefit-flip-front">
+                    <div className="cloud-why-choose-benefit-icon">
+                      <i className="fas fa-check"></i>
+                    </div>
+                    <h3 className="cloud-why-choose-benefit-title">Scalable & Future-Ready</h3>
+                  </div>
+                  <div className="cloud-why-choose-benefit-flip-back">
+                    <p className="cloud-why-choose-benefit-description">Every solution is designed to scale and adapt with your evolving business needs and growth.</p>
+                  </div>
                 </div>
               </div>
             </div>

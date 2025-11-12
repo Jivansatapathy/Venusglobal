@@ -328,22 +328,30 @@ const IATFAuditing = () => {
             </p>
             <div className="iatf-why-choose-divider"></div>
             <div className="iatf-why-choose-benefits">
-              <div className="iatf-why-choose-benefit-item">
-                <div className="iatf-why-choose-benefit-icon">
-                  <i className="fas fa-check"></i>
-                </div>
-                <div className="iatf-why-choose-benefit-content">
-                  <h3 className="iatf-why-choose-benefit-title">Expert & Certified</h3>
-                  <p className="iatf-why-choose-benefit-description">Our auditors are certified professionals with extensive experience in automotive quality management systems.</p>
+              <div className="iatf-why-choose-benefit-flip-card">
+                <div className="iatf-why-choose-benefit-flip-inner">
+                  <div className="iatf-why-choose-benefit-flip-front">
+                    <div className="iatf-why-choose-benefit-icon">
+                      <i className="fas fa-check"></i>
+                    </div>
+                    <h3 className="iatf-why-choose-benefit-title">Expert & Certified</h3>
+                  </div>
+                  <div className="iatf-why-choose-benefit-flip-back">
+                    <p className="iatf-why-choose-benefit-description">Our auditors are certified professionals with extensive experience in automotive quality management systems.</p>
+                  </div>
                 </div>
               </div>
-              <div className="iatf-why-choose-benefit-item">
-                <div className="iatf-why-choose-benefit-icon">
-                  <i className="fas fa-check"></i>
-                </div>
-                <div className="iatf-why-choose-benefit-content">
-                  <h3 className="iatf-why-choose-benefit-title">Comprehensive & Reliable</h3>
-                  <p className="iatf-why-choose-benefit-description">Every audit is thorough and reliable, ensuring your organization meets all IATF 16949 requirements.</p>
+              <div className="iatf-why-choose-benefit-flip-card">
+                <div className="iatf-why-choose-benefit-flip-inner">
+                  <div className="iatf-why-choose-benefit-flip-front">
+                    <div className="iatf-why-choose-benefit-icon">
+                      <i className="fas fa-check"></i>
+                    </div>
+                    <h3 className="iatf-why-choose-benefit-title">Comprehensive & Reliable</h3>
+                  </div>
+                  <div className="iatf-why-choose-benefit-flip-back">
+                    <p className="iatf-why-choose-benefit-description">Every audit is thorough and reliable, ensuring your organization meets all IATF 16949 requirements.</p>
+                  </div>
                 </div>
               </div>
             </div>

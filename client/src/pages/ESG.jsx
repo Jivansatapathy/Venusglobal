@@ -305,22 +305,30 @@ const ESG = () => {
             </p>
             <div className="esg-why-choose-divider"></div>
             <div className="esg-why-choose-benefits">
-              <div className="esg-why-choose-benefit-item">
-                <div className="esg-why-choose-benefit-icon">
-                  <i className="fas fa-check"></i>
-                </div>
-                <div className="esg-why-choose-benefit-content">
-                  <h3 className="esg-why-choose-benefit-title">Comprehensive & Measurable</h3>
-                  <p className="esg-why-choose-benefit-description">Our ESG solutions provide complete coverage with measurable impact and clear ROI.</p>
+              <div className="esg-why-choose-benefit-flip-card">
+                <div className="esg-why-choose-benefit-flip-inner">
+                  <div className="esg-why-choose-benefit-flip-front">
+                    <div className="esg-why-choose-benefit-icon">
+                      <i className="fas fa-check"></i>
+                    </div>
+                    <h3 className="esg-why-choose-benefit-title">Comprehensive & Measurable</h3>
+                  </div>
+                  <div className="esg-why-choose-benefit-flip-back">
+                    <p className="esg-why-choose-benefit-description">Our ESG solutions provide complete coverage with measurable impact and clear ROI.</p>
+                  </div>
                 </div>
               </div>
-              <div className="esg-why-choose-benefit-item">
-                <div className="esg-why-choose-benefit-icon">
-                  <i className="fas fa-check"></i>
-                </div>
-                <div className="esg-why-choose-benefit-content">
-                  <h3 className="esg-why-choose-benefit-title">Expert & Future-Ready</h3>
-                  <p className="esg-why-choose-benefit-description">Every solution is designed by experts to meet current and future ESG requirements.</p>
+              <div className="esg-why-choose-benefit-flip-card">
+                <div className="esg-why-choose-benefit-flip-inner">
+                  <div className="esg-why-choose-benefit-flip-front">
+                    <div className="esg-why-choose-benefit-icon">
+                      <i className="fas fa-check"></i>
+                    </div>
+                    <h3 className="esg-why-choose-benefit-title">Expert & Future-Ready</h3>
+                  </div>
+                  <div className="esg-why-choose-benefit-flip-back">
+                    <p className="esg-why-choose-benefit-description">Every solution is designed by experts to meet current and future ESG requirements.</p>
+                  </div>
                 </div>
               </div>
             </div>

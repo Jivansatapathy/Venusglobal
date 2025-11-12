@@ -337,22 +337,30 @@ const DigitalReach = () => {
             </p>
             <div className="digital-why-choose-divider"></div>
             <div className="digital-why-choose-benefits">
-              <div className="digital-why-choose-benefit-item">
-                <div className="digital-why-choose-benefit-icon">
-                  <i className="fas fa-check"></i>
-                </div>
-                <div className="digital-why-choose-benefit-content">
-                  <h3 className="digital-why-choose-benefit-title">Strategic & Data-Driven</h3>
-                  <p className="digital-why-choose-benefit-description">Our digital reach strategies are backed by data and designed for maximum impact and ROI.</p>
+              <div className="digital-why-choose-benefit-flip-card">
+                <div className="digital-why-choose-benefit-flip-inner">
+                  <div className="digital-why-choose-benefit-flip-front">
+                    <div className="digital-why-choose-benefit-icon">
+                      <i className="fas fa-check"></i>
+                    </div>
+                    <h3 className="digital-why-choose-benefit-title">Strategic & Data-Driven</h3>
+                  </div>
+                  <div className="digital-why-choose-benefit-flip-back">
+                    <p className="digital-why-choose-benefit-description">Our digital reach strategies are backed by data and designed for maximum impact and ROI.</p>
+                  </div>
                 </div>
               </div>
-              <div className="digital-why-choose-benefit-item">
-                <div className="digital-why-choose-benefit-icon">
-                  <i className="fas fa-check"></i>
-                </div>
-                <div className="digital-why-choose-benefit-content">
-                  <h3 className="digital-why-choose-benefit-title">Multi-Channel & Scalable</h3>
-                  <p className="digital-why-choose-benefit-description">Every solution spans multiple channels and scales with your business growth and objectives.</p>
+              <div className="digital-why-choose-benefit-flip-card">
+                <div className="digital-why-choose-benefit-flip-inner">
+                  <div className="digital-why-choose-benefit-flip-front">
+                    <div className="digital-why-choose-benefit-icon">
+                      <i className="fas fa-check"></i>
+                    </div>
+                    <h3 className="digital-why-choose-benefit-title">Multi-Channel & Scalable</h3>
+                  </div>
+                  <div className="digital-why-choose-benefit-flip-back">
+                    <p className="digital-why-choose-benefit-description">Every solution spans multiple channels and scales with your business growth and objectives.</p>
+                  </div>
                 </div>
               </div>
             </div>

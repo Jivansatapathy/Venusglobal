@@ -328,22 +328,30 @@ const SoftwareDataAI = () => {
             </p>
             <div className="software-data-why-choose-divider"></div>
             <div className="software-data-why-choose-benefits">
-              <div className="software-data-why-choose-benefit-item">
-                <div className="software-data-why-choose-benefit-icon">
-                  <i className="fas fa-check"></i>
-                </div>
-                <div className="software-data-why-choose-benefit-content">
-                  <h3 className="software-data-why-choose-benefit-title">Expert & Innovative</h3>
-                  <p className="software-data-why-choose-benefit-description">Our team combines software development expertise with cutting-edge data AI technologies to deliver innovative solutions.</p>
+              <div className="software-data-why-choose-benefit-flip-card">
+                <div className="software-data-why-choose-benefit-flip-inner">
+                  <div className="software-data-why-choose-benefit-flip-front">
+                    <div className="software-data-why-choose-benefit-icon">
+                      <i className="fas fa-check"></i>
+                    </div>
+                    <h3 className="software-data-why-choose-benefit-title">Expert & Innovative</h3>
+                  </div>
+                  <div className="software-data-why-choose-benefit-flip-back">
+                    <p className="software-data-why-choose-benefit-description">Our team combines software development expertise with cutting-edge data AI technologies to deliver innovative solutions.</p>
+                  </div>
                 </div>
               </div>
-              <div className="software-data-why-choose-benefit-item">
-                <div className="software-data-why-choose-benefit-icon">
-                  <i className="fas fa-check"></i>
-                </div>
-                <div className="software-data-why-choose-benefit-content">
-                  <h3 className="software-data-why-choose-benefit-title">Scalable & Future-Ready</h3>
-                  <p className="software-data-why-choose-benefit-description">Every solution is designed to scale and adapt with your evolving business needs and technological advancements.</p>
+              <div className="software-data-why-choose-benefit-flip-card">
+                <div className="software-data-why-choose-benefit-flip-inner">
+                  <div className="software-data-why-choose-benefit-flip-front">
+                    <div className="software-data-why-choose-benefit-icon">
+                      <i className="fas fa-check"></i>
+                    </div>
+                    <h3 className="software-data-why-choose-benefit-title">Scalable & Future-Ready</h3>
+                  </div>
+                  <div className="software-data-why-choose-benefit-flip-back">
+                    <p className="software-data-why-choose-benefit-description">Every solution is designed to scale and adapt with your evolving business needs and technological advancements.</p>
+                  </div>
                 </div>
               </div>
             </div>
