@@ -310,100 +310,142 @@ const Home = () => {
               </div>
               
               <div className="services-content">
-                <div className="services-list">
-                  <div className="service-item" data-service="software-data-ai" onClick={() => window.location.href = '/software-data-ai'} style={{cursor: 'pointer'}}>
-                    <div className="service-number">01</div>
-                    <div className="service-details">
-                      <h3 className="service-title">Software Development & Data AI</h3>
-                      <p className="service-description">
-                        Cutting-edge software development and AI solutions that transform your business operations. We build intelligent applications, implement machine learning models, and create data-driven solutions that drive innovation and efficiency.
-                      </p>
-                    </div>
-                    <button className="service-arrow" onClick={(e) => { e.stopPropagation(); window.location.href = '/software-data-ai'; }}>
-                      <span className="arrow-icon">↗</span>
-                    </button>
-                    <div className="service-hover-image">
+                <div className="services-grid">
+                  <div 
+                    className="service-card" 
+                    onClick={() => window.location.href = '/software-data-ai'}
+                    style={{cursor: 'pointer'}}
+                  >
+                    <div className="service-card-image">
                       <img src="/images/Software & Data.jpg" alt="Software Development & Data AI" />
+                      <div className="service-card-overlay"></div>
+                    </div>
+                    <div className="service-card-content">
+                      <div className="service-card-number">01</div>
+                      <h3 className="service-card-title">Software Development & Data AI</h3>
+                      <div className="service-card-hover">
+                        <p className="service-card-description">
+                          Cutting-edge software development and AI solutions that transform your business operations. We build intelligent applications, implement machine learning models, and create data-driven solutions.
+                        </p>
+                        <div className="service-card-arrow">
+                          <span>→</span>
+                        </div>
+                      </div>
                     </div>
                   </div>
                   
-                  <div className="service-item" data-service="agentic-ai" onClick={() => window.location.href = '/agentic-ai'} style={{cursor: 'pointer'}}>
-                    <div className="service-number">02</div>
-                    <div className="service-details">
-                      <h3 className="service-title">Agentic AI Solutions</h3>
-                      <p className="service-description">
-                        Next-generation autonomous AI agents that can reason, plan, and execute complex tasks independently. Our agentic AI systems learn, adapt, and make decisions to optimize your business processes and drive intelligent automation.
-                      </p>
-                    </div>
-                    <button className="service-arrow" onClick={(e) => { e.stopPropagation(); window.location.href = '/agentic-ai'; }}>
-                      <span className="arrow-icon">↗</span>
-                    </button>
-                    <div className="service-hover-image">
+                  <div 
+                    className="service-card" 
+                    onClick={() => window.location.href = '/agentic-ai'}
+                    style={{cursor: 'pointer'}}
+                  >
+                    <div className="service-card-image">
                       <img src="/images/Agentic AI.jpg" alt="Agentic AI Solutions" />
+                      <div className="service-card-overlay"></div>
+                    </div>
+                    <div className="service-card-content">
+                      <div className="service-card-number">02</div>
+                      <h3 className="service-card-title">Agentic AI Solutions</h3>
+                      <div className="service-card-hover">
+                        <p className="service-card-description">
+                          Next-generation autonomous AI agents that can reason, plan, and execute complex tasks independently. Our agentic AI systems learn, adapt, and make decisions to optimize your business processes.
+                        </p>
+                        <div className="service-card-arrow">
+                          <span>→</span>
+                        </div>
+                      </div>
                     </div>
                   </div>
                   
-                  <div className="service-item" data-service="cloud-services" onClick={() => window.location.href = '/cloud-service'} style={{cursor: 'pointer'}}>
-                    <div className="service-number">03</div>
-                    <div className="service-details">
-                      <h3 className="service-title">Cloud Services & Infrastructure</h3>
-                      <p className="service-description">
-                        Comprehensive cloud solutions that scale with your business. From cloud migration and architecture design to managed services and DevOps, we ensure your infrastructure is secure, scalable, and cost-effective.
-                      </p>
+                  <div 
+                    className="service-card" 
+                    onClick={() => window.location.href = '/cloud-service'}
+                    style={{cursor: 'pointer'}}
+                  >
+                    <div className="service-card-image">
+                      <img src="/images/AI & Cloud.jpg" alt="Cloud Services & Infrastructure" />
+                      <div className="service-card-overlay"></div>
                     </div>
-                    <button className="service-arrow" onClick={(e) => { e.stopPropagation(); window.location.href = '/cloud-service'; }}>
-                      <span className="arrow-icon">↗</span>
-                    </button>
-                    <div className="service-hover-image">
-                      <img src="/images/AI & Cloud.jpg" alt="Cloud Services" />
-                    </div>
-                  </div>
-                  
-                  <div className="service-item" data-service="digital-reach" onClick={() => window.location.href = '/digital-reach'} style={{cursor: 'pointer'}}>
-                    <div className="service-number">04</div>
-                    <div className="service-details">
-                      <h3 className="service-title">Digital Marketing & Reach</h3>
-                      <p className="service-description">
-                        Strategic digital marketing solutions that expand your market reach and drive growth. We combine SEO, social media, content marketing, and data analytics to create campaigns that deliver measurable results and ROI.
-                      </p>
-                    </div>
-                    <button className="service-arrow" onClick={(e) => { e.stopPropagation(); window.location.href = '/digital-reach'; }}>
-                      <span className="arrow-icon">↗</span>
-                    </button>
-                    <div className="service-hover-image">
-                      <img src="/images/SEO.webp" alt="Digital Marketing" />
+                    <div className="service-card-content">
+                      <div className="service-card-number">03</div>
+                      <h3 className="service-card-title">Cloud Services & Infrastructure</h3>
+                      <div className="service-card-hover">
+                        <p className="service-card-description">
+                          Comprehensive cloud solutions that scale with your business. From cloud migration and architecture design to managed services and DevOps, we ensure your infrastructure is secure and scalable.
+                        </p>
+                        <div className="service-card-arrow">
+                          <span>→</span>
+                        </div>
+                      </div>
                     </div>
                   </div>
                   
-                  <div className="service-item" data-service="esg-solutions" onClick={() => window.location.href = '/esg'} style={{cursor: 'pointer'}}>
-                    <div className="service-number">05</div>
-                    <div className="service-details">
-                      <h3 className="service-title">ESG Solutions & Sustainability</h3>
-                      <p className="service-description">
-                        Environmental, Social, and Governance solutions that help your organization meet sustainability goals and regulatory requirements. We provide ESG reporting, compliance management, and sustainable technology implementations.
-                      </p>
+                  <div 
+                    className="service-card" 
+                    onClick={() => window.location.href = '/digital-reach'}
+                    style={{cursor: 'pointer'}}
+                  >
+                    <div className="service-card-image">
+                      <img src="/images/SEO.webp" alt="Digital Marketing & Reach" />
+                      <div className="service-card-overlay"></div>
                     </div>
-                    <button className="service-arrow" onClick={(e) => { e.stopPropagation(); window.location.href = '/esg'; }}>
-                      <span className="arrow-icon">↗</span>
-                    </button>
-                    <div className="service-hover-image">
-                      <img src="/images/ESG.jpg" alt="ESG Solutions" />
+                    <div className="service-card-content">
+                      <div className="service-card-number">04</div>
+                      <h3 className="service-card-title">Digital Marketing & Reach</h3>
+                      <div className="service-card-hover">
+                        <p className="service-card-description">
+                          Strategic digital marketing solutions that expand your market reach and drive growth. We combine SEO, social media, content marketing, and data analytics to create campaigns that deliver measurable results.
+                        </p>
+                        <div className="service-card-arrow">
+                          <span>→</span>
+                        </div>
+                      </div>
                     </div>
                   </div>
                   
-                  <div className="service-item" data-service="iatf-auditing" onClick={() => window.location.href = '/iatf-auditing'} style={{cursor: 'pointer'}}>
-                    <div className="service-number">06</div>
-                    <div className="service-details">
-                      <h3 className="service-title">IATF Auditing & Compliance</h3>
-                      <p className="service-description">
-                        Specialized IATF 16949 automotive quality management system auditing and compliance services. We help automotive suppliers achieve and maintain certification while improving quality processes and reducing risks.
-                      </p>
+                  <div 
+                    className="service-card" 
+                    onClick={() => window.location.href = '/esg'}
+                    style={{cursor: 'pointer'}}
+                  >
+                    <div className="service-card-image">
+                      <img src="/images/ESG.jpg" alt="ESG Solutions & Sustainability" />
+                      <div className="service-card-overlay"></div>
                     </div>
-                    <button className="service-arrow" onClick={(e) => { e.stopPropagation(); window.location.href = '/iatf-auditing'; }}>
-                      <span className="arrow-icon">↗</span>
-                    </button>
-                    <div className="service-hover-image">
-                      <img src="/images/IATF.jpg" alt="IATF Auditing" />
+                    <div className="service-card-content">
+                      <div className="service-card-number">05</div>
+                      <h3 className="service-card-title">ESG Solutions & Sustainability</h3>
+                      <div className="service-card-hover">
+                        <p className="service-card-description">
+                          Environmental, Social, and Governance solutions that help your organization meet sustainability goals and regulatory requirements. We provide ESG reporting, compliance management, and sustainable technology implementations.
+                        </p>
+                        <div className="service-card-arrow">
+                          <span>→</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div 
+                    className="service-card" 
+                    onClick={() => window.location.href = '/iatf-auditing'}
+                    style={{cursor: 'pointer'}}
+                  >
+                    <div className="service-card-image">
+                      <img src="/images/IATF.jpg" alt="IATF Auditing & Compliance" />
+                      <div className="service-card-overlay"></div>
+                    </div>
+                    <div className="service-card-content">
+                      <div className="service-card-number">06</div>
+                      <h3 className="service-card-title">IATF Auditing & Compliance</h3>
+                      <div className="service-card-hover">
+                        <p className="service-card-description">
+                          Specialized IATF 16949 automotive quality management system auditing and compliance services. We help automotive suppliers achieve and maintain certification while improving quality processes and reducing risks.
+                        </p>
+                        <div className="service-card-arrow">
+                          <span>→</span>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>

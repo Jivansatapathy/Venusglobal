@@ -3,12 +3,13 @@
   "version": "1.0.0",
   "description": "Venus Global Technology - React Frontend",
   "private": true,
-  "proxy": "http://localhost:5000",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "npm run build && npx firebase deploy --only hosting",
+    "deploy:hosting": "npx firebase deploy --only hosting"
   },
   "dependencies": {
     "lottie-react": "^2.4.1",
@@ -35,6 +36,8 @@
     "venus-tech"
   ],
   "author": "Venus Global Technology",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "http-proxy-middleware": "^3.0.5"
+  }
 }
-

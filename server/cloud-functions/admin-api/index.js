@@ -43,6 +43,7 @@ const ADMIN_TOKEN = functions.config().admin?.token ||
 // Firestore collection and document names
 const CONTENT_COLLECTION = 'cms';
 const CONTENT_DOCUMENT = 'content';
+const BLOGS_COLLECTION = 'blogs';
 
 // ============================================================================
 // HELPER FUNCTIONS
@@ -320,6 +321,277 @@ async function handleUpdateSubsection(req, res, section, subsection) {
 }
 
 // ============================================================================
+// BLOG HANDLERS
+// ============================================================================
+
+/**
+ * Generate slug from title
+ * @param {string} title - Blog title
+ * @returns {string} URL-friendly slug
+ */
+function generateSlug(title) {
+  return title
+    .toLowerCase()
+    .trim()
+    .replace(/[^\w\s-]/g, '')
+    .replace(/[\s_-]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
+/**
+ * Calculate read time from content
+ * @param {string} content - Blog content
+ * @returns {string} Read time estimate
+ */
+function calculateReadTime(content) {
+  const wordsPerMinute = 200;
+  const wordCount = content.split(/\s+/).length;
+  const minutes = Math.ceil(wordCount / wordsPerMinute);
+  return `${minutes} min read`;
+}
+
+/**
+ * Handle get all blogs
+ * @param {Object} req - Express request object
+ * @param {Object} res - Express response object
+ */
+async function handleGetAllBlogs(req, res) {
+  try {
+    let blogsSnapshot;
+    
+    // Try to order by date, fallback to simple get if index doesn't exist
+    try {
+      blogsSnapshot = await db.collection(BLOGS_COLLECTION)
+        .orderBy('date', 'desc')
+        .get();
+    } catch (orderError) {
+      // If ordering fails (e.g., no index), just get all blogs
+      console.log('OrderBy failed, fetching without order:', orderError.message);
+      blogsSnapshot = await db.collection(BLOGS_COLLECTION).get();
+    }
+    
+    const blogs = [];
+    blogsSnapshot.forEach(doc => {
+      blogs.push({
+        id: doc.id,
+        ...doc.data()
+      });
+    });
+    
+    // Sort manually if orderBy failed
+    if (blogs.length > 0) {
+      blogs.sort((a, b) => {
+        // First try to sort by date
+        if (a.date && b.date) {
+          return b.date.localeCompare(a.date);
+        }
+        // Fallback to createdAt timestamp
+        if (a.createdAt && b.createdAt) {
+          const timeA = a.createdAt.toMillis ? a.createdAt.toMillis() : (a.createdAt._seconds * 1000);
+          const timeB = b.createdAt.toMillis ? b.createdAt.toMillis() : (b.createdAt._seconds * 1000);
+          return timeB - timeA;
+        }
+        // Last resort: sort by ID
+        return b.id.localeCompare(a.id);
+      });
+    }
+    
+    return res.status(200).json(blogs);
+  } catch (error) {
+    console.error('Error getting blogs:', error);
+    return res.status(500).json({ error: 'Failed to retrieve blogs', message: error.message });
+  }
+}
+
+/**
+ * Handle get single blog
+ * @param {Object} req - Express request object
+ * @param {Object} res - Express response object
+ * @param {string} blogId - Blog ID
+ */
+async function handleGetBlog(req, res, blogId) {
+  try {
+    const blogDoc = await db.collection(BLOGS_COLLECTION).doc(blogId).get();
+    
+    if (!blogDoc.exists) {
+      return res.status(404).json({ error: 'Blog not found' });
+    }
+    
+    return res.status(200).json({
+      id: blogDoc.id,
+      ...blogDoc.data()
+    });
+  } catch (error) {
+    console.error(`Error getting blog '${blogId}':`, error);
+    return res.status(500).json({ error: 'Failed to retrieve blog', message: error.message });
+  }
+}
+
+/**
+ * Handle create blog
+ * @param {Object} req - Express request object
+ * @param {Object} res - Express response object
+ */
+async function handleCreateBlog(req, res) {
+  try {
+    if (!authenticateAdmin(req)) {
+      return res.status(401).json({ error: 'Unauthorized. Valid Bearer token required.' });
+    }
+    
+    const validation = validateRequestBody(req.body, ['title', 'content']);
+    if (!validation.valid) {
+      return res.status(400).json({ error: validation.error });
+    }
+    
+    const {
+      title,
+      excerpt,
+      content,
+      author = 'Venus Tech Team',
+      category = 'AI & Technology',
+      image = '',
+      featured = false
+    } = req.body;
+    
+    // Generate slug if not provided
+    const slug = req.body.slug || generateSlug(title);
+    
+    // Check if slug already exists
+    const existingBlog = await db.collection(BLOGS_COLLECTION)
+      .where('slug', '==', slug)
+      .get();
+    
+    if (!existingBlog.empty) {
+      return res.status(400).json({ error: 'A blog with this slug already exists' });
+    }
+    
+    // Calculate read time
+    const readTime = calculateReadTime(content);
+    
+    // Create blog data
+    const blogData = {
+      title,
+      excerpt: excerpt || content.substring(0, 150) + '...',
+      content,
+      author,
+      category,
+      image,
+      featured: Boolean(featured),
+      slug,
+      readTime,
+      date: new Date().toISOString().split('T')[0], // YYYY-MM-DD format
+      createdAt: admin.firestore.FieldValue.serverTimestamp(),
+      updatedAt: admin.firestore.FieldValue.serverTimestamp()
+    };
+    
+    // Add to Firestore
+    const docRef = await db.collection(BLOGS_COLLECTION).add(blogData);
+    
+    console.log(`Blog created successfully with ID: ${docRef.id}`);
+    return res.status(201).json({
+      message: 'Blog created successfully',
+      id: docRef.id,
+      blog: {
+        id: docRef.id,
+        ...blogData
+      }
+    });
+  } catch (error) {
+    console.error('Error creating blog:', error);
+    return res.status(500).json({ error: 'Failed to create blog', message: error.message });
+  }
+}
+
+/**
+ * Handle update blog
+ * @param {Object} req - Express request object
+ * @param {Object} res - Express response object
+ * @param {string} blogId - Blog ID
+ */
+async function handleUpdateBlog(req, res, blogId) {
+  try {
+    if (!authenticateAdmin(req)) {
+      return res.status(401).json({ error: 'Unauthorized. Valid Bearer token required.' });
+    }
+    
+    if (!req.body || typeof req.body !== 'object') {
+      return res.status(400).json({ error: 'Request body is required' });
+    }
+    
+    // Check if blog exists
+    const blogDoc = await db.collection(BLOGS_COLLECTION).doc(blogId).get();
+    if (!blogDoc.exists) {
+      return res.status(404).json({ error: 'Blog not found' });
+    }
+    
+    const updateData = { ...req.body };
+    
+    // If title or content changed, update slug and readTime
+    if (updateData.title && updateData.title !== blogDoc.data().title) {
+      updateData.slug = generateSlug(updateData.title);
+    }
+    
+    if (updateData.content) {
+      updateData.readTime = calculateReadTime(updateData.content);
+    }
+    
+    // Add updated timestamp
+    updateData.updatedAt = admin.firestore.FieldValue.serverTimestamp();
+    
+    // Update blog
+    await db.collection(BLOGS_COLLECTION).doc(blogId).update(updateData);
+    
+    // Get updated blog
+    const updatedBlog = await db.collection(BLOGS_COLLECTION).doc(blogId).get();
+    
+    console.log(`Blog '${blogId}' updated successfully`);
+    return res.status(200).json({
+      message: 'Blog updated successfully',
+      id: blogId,
+      blog: {
+        id: updatedBlog.id,
+        ...updatedBlog.data()
+      }
+    });
+  } catch (error) {
+    console.error(`Error updating blog '${blogId}':`, error);
+    return res.status(500).json({ error: 'Failed to update blog', message: error.message });
+  }
+}
+
+/**
+ * Handle delete blog
+ * @param {Object} req - Express request object
+ * @param {Object} res - Express response object
+ * @param {string} blogId - Blog ID
+ */
+async function handleDeleteBlog(req, res, blogId) {
+  try {
+    if (!authenticateAdmin(req)) {
+      return res.status(401).json({ error: 'Unauthorized. Valid Bearer token required.' });
+    }
+    
+    // Check if blog exists
+    const blogDoc = await db.collection(BLOGS_COLLECTION).doc(blogId).get();
+    if (!blogDoc.exists) {
+      return res.status(404).json({ error: 'Blog not found' });
+    }
+    
+    // Delete blog
+    await db.collection(BLOGS_COLLECTION).doc(blogId).delete();
+    
+    console.log(`Blog '${blogId}' deleted successfully`);
+    return res.status(200).json({
+      message: 'Blog deleted successfully',
+      id: blogId
+    });
+  } catch (error) {
+    console.error(`Error deleting blog '${blogId}':`, error);
+    return res.status(500).json({ error: 'Failed to delete blog', message: error.message });
+  }
+}
+
+// ============================================================================
 // MAIN FIREBASE FUNCTION
 // ============================================================================
 
@@ -391,6 +663,53 @@ exports.adminApi = functions.https.onRequest(async (req, res) => {
       }
       
       // ========================================================================
+      // BLOG ROUTES
+      // ========================================================================
+      
+      // Route: GET /api/blogs
+      if (method === 'GET' && 
+          pathParts.length === 2 &&
+          pathParts[0] === 'api' && 
+          pathParts[1] === 'blogs') {
+        return await handleGetAllBlogs(req, res);
+      }
+      
+      // Route: GET /api/blogs/:id
+      if (method === 'GET' && 
+          pathParts.length === 3 &&
+          pathParts[0] === 'api' && 
+          pathParts[1] === 'blogs') {
+        const blogId = pathParts[2];
+        return await handleGetBlog(req, res, blogId);
+      }
+      
+      // Route: POST /api/blogs
+      if (method === 'POST' && 
+          pathParts.length === 2 &&
+          pathParts[0] === 'api' && 
+          pathParts[1] === 'blogs') {
+        return await handleCreateBlog(req, res);
+      }
+      
+      // Route: PUT /api/blogs/:id
+      if (method === 'PUT' && 
+          pathParts.length === 3 &&
+          pathParts[0] === 'api' && 
+          pathParts[1] === 'blogs') {
+        const blogId = pathParts[2];
+        return await handleUpdateBlog(req, res, blogId);
+      }
+      
+      // Route: DELETE /api/blogs/:id
+      if (method === 'DELETE' && 
+          pathParts.length === 3 &&
+          pathParts[0] === 'api' && 
+          pathParts[1] === 'blogs') {
+        const blogId = pathParts[2];
+        return await handleDeleteBlog(req, res, blogId);
+      }
+      
+      // ========================================================================
       // 404 - Route not found
       // ========================================================================
       
@@ -404,7 +723,12 @@ exports.adminApi = functions.https.onRequest(async (req, res) => {
           'GET /api/content',
           'GET /api/content/:section',
           'PUT /api/content/:section (requires auth)',
-          'PUT /api/content/:section/:subsection (requires auth)'
+          'PUT /api/content/:section/:subsection (requires auth)',
+          'GET /api/blogs',
+          'GET /api/blogs/:id',
+          'POST /api/blogs (requires auth)',
+          'PUT /api/blogs/:id (requires auth)',
+          'DELETE /api/blogs/:id (requires auth)'
         ]
       });
       

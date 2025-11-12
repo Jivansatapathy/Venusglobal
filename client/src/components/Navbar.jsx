@@ -16,7 +16,7 @@ const Navbar = () => {
       <div className="nav-container">
         <div className="nav-logo">
           <Link to="/" className="logo-link" onClick={handleLinkClick}>
-            <img src="/images/02.png" alt="Ritovex Logo" className="logo-img" />
+            <img src="/images/02.png" alt="Venus Global Technology Logo" className="logo-img" />
           </Link>
         </div>
         

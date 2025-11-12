@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
@@ -23,17 +23,31 @@ function ScrollToTop() {
   return null;
 }
 
-function App() {
+function AnimatedRoutes() {
   const location = useLocation();
-  const isAdmin = location.pathname === '/admin' || location.pathname.startsWith('/admin');
+  const [displayLocation, setDisplayLocation] = useState(location);
+  const [transitionStage, setTransitionStage] = useState('fadeIn');
 
-  console.log('Current path:', location.pathname, 'isAdmin:', isAdmin);
+  useEffect(() => {
+    if (location.pathname !== displayLocation.pathname) {
+      setTransitionStage('fadeOut');
+    }
+  }, [location, displayLocation]);
+
+  const handleAnimationEnd = () => {
+    if (transitionStage === 'fadeOut') {
+      setDisplayLocation(location);
+      setTransitionStage('fadeIn');
+    }
+  };
 
   return (
-    <div className="App">
-      <ScrollToTop />
-      {!isAdmin && <Navbar />}
-      <Routes>
+    <div
+      className={`page-transition ${transitionStage}`}
+      onAnimationEnd={handleAnimationEnd}
+      key={displayLocation.pathname}
+    >
+      <Routes location={displayLocation}>
         <Route path="/admin" element={<Admin />} />
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
@@ -47,6 +61,21 @@ function App() {
         <Route path="/blogs" element={<Blogs />} />
         <Route path="/blog/:slug" element={<BlogDetail />} />
       </Routes>
+    </div>
+  );
+}
+
+function App() {
+  const location = useLocation();
+  const isAdmin = location.pathname === '/admin' || location.pathname.startsWith('/admin');
+
+  console.log('Current path:', location.pathname, 'isAdmin:', isAdmin);
+
+  return (
+    <div className="App">
+      <ScrollToTop />
+      {!isAdmin && <Navbar />}
+      <AnimatedRoutes />
     </div>
   );
 }

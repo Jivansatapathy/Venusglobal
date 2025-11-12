@@ -6,11 +6,17 @@ const Admin = () => {
   console.log('Admin component rendered');
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [password, setPassword] = useState('');
+  const [otp, setOtp] = useState('');
+  const [sessionId, setSessionId] = useState('');
+  const [loginStep, setLoginStep] = useState('password'); // 'password' or 'otp'
   const [token, setToken] = useState('');
   const [content, setContent] = useState(null);
   const [loading, setLoading] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
   const [saveStatus, setSaveStatus] = useState('');
+  const [otpExpiresAt, setOtpExpiresAt] = useState(null);
+  const [timeRemaining, setTimeRemaining] = useState(null);
+  const [resendCooldown, setResendCooldown] = useState(0);
 
   useEffect(() => {
     // Check if already authenticated
@@ -22,7 +28,39 @@ const Admin = () => {
     }
   }, []);
 
-  const handleLogin = async (e) => {
+  // Countdown timer for OTP expiration
+  useEffect(() => {
+    if (!otpExpiresAt) return;
+
+    const updateTimer = () => {
+      const now = new Date().getTime();
+      const expires = new Date(otpExpiresAt).getTime();
+      const remaining = Math.max(0, Math.floor((expires - now) / 1000));
+      setTimeRemaining(remaining);
+
+      if (remaining === 0) {
+        setOtpExpiresAt(null);
+      }
+    };
+
+    updateTimer();
+    const interval = setInterval(updateTimer, 1000);
+    return () => clearInterval(interval);
+  }, [otpExpiresAt]);
+
+  // Resend cooldown timer
+  useEffect(() => {
+    if (resendCooldown <= 0) return;
+
+    const timer = setTimeout(() => {
+      setResendCooldown(resendCooldown - 1);
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, [resendCooldown]);
+
+  // Step 1: Verify password and request OTP
+  const handlePasswordSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     try {
@@ -32,7 +70,6 @@ const Admin = () => {
         body: JSON.stringify({ password }),
       });
       
-      // Check content type before parsing
       const contentType = response.headers.get('content-type');
       let data;
       
@@ -45,7 +82,6 @@ const Admin = () => {
           return;
         }
       } else {
-        // If not JSON, get text response
         const text = await response.text();
         alert('Server error: ' + (text || 'Invalid response from server. Please check if the server is running.'));
         setLoading(false);
@@ -53,10 +89,12 @@ const Admin = () => {
       }
       
       if (response.ok) {
-        setToken(data.token);
-        localStorage.setItem('adminToken', data.token);
-        setIsAuthenticated(true);
-        loadContent();
+        // Password verified - move to OTP step
+        setSessionId(data.sessionId);
+        setOtpExpiresAt(data.expiresAt);
+        setLoginStep('otp');
+        setResendCooldown(30); // 30 second cooldown for resend
+        alert('Password verified! Check your email for the verification code.');
       } else {
         alert(data.error || 'Login failed');
       }
@@ -65,6 +103,76 @@ const Admin = () => {
     } finally {
       setLoading(false);
     }
+  };
+
+  // Step 2: Verify OTP
+  const handleOtpSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    try {
+      const response = await fetch(getApiUrl('api/admin/verify-otp'), {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ sessionId, otp }),
+      });
+      
+      const data = await response.json();
+      
+      if (response.ok) {
+        setToken(data.token);
+        localStorage.setItem('adminToken', data.token);
+        setIsAuthenticated(true);
+        setLoginStep('password');
+        setOtp('');
+        setSessionId('');
+        setOtpExpiresAt(null);
+        loadContent();
+      } else {
+        alert(data.error || 'Invalid verification code');
+        if (data.attemptsRemaining !== undefined) {
+          alert(`Attempts remaining: ${data.attemptsRemaining}`);
+        }
+      }
+    } catch (error) {
+      alert('Verification error: ' + error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Resend OTP
+  const handleResendOtp = async () => {
+    if (resendCooldown > 0) return;
+    
+    setLoading(true);
+    try {
+      const response = await fetch(getApiUrl('api/admin/resend-otp'), {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ sessionId }),
+      });
+      
+      const data = await response.json();
+      
+      if (response.ok) {
+        setOtpExpiresAt(data.expiresAt);
+        setResendCooldown(30);
+        setOtp(''); // Clear current OTP input
+        alert('New verification code sent to your email!');
+      } else {
+        alert(data.error || 'Failed to resend code');
+      }
+    } catch (error) {
+      alert('Error: ' + error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const formatTime = (seconds) => {
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return `${mins}:${secs.toString().padStart(2, '0')}`;
   };
 
   const handleLogout = () => {
@@ -183,21 +291,106 @@ const Admin = () => {
       <div className="admin-login">
         <div className="admin-login-container">
           <h1>Admin Login</h1>
-          <form onSubmit={handleLogin}>
-            <div className="form-group">
-              <label>Password</label>
-              <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-                placeholder="Enter admin password"
-              />
-            </div>
-            <button type="submit" disabled={loading}>
-              {loading ? 'Logging in...' : 'Login'}
-            </button>
-          </form>
+          
+          {loginStep === 'password' ? (
+            <form onSubmit={handlePasswordSubmit}>
+              <div className="form-group">
+                <label>Password</label>
+                <input
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                  placeholder="Enter admin password"
+                  autoFocus
+                />
+              </div>
+              <button type="submit" disabled={loading}>
+                {loading ? 'Verifying...' : 'Continue'}
+              </button>
+              <p style={{ fontSize: '0.875rem', color: '#666', marginTop: '1rem', textAlign: 'center' }}>
+                After entering your password, you'll receive a verification code via email.
+              </p>
+            </form>
+          ) : (
+            <form onSubmit={handleOtpSubmit}>
+              <div className="form-group">
+                <label>Verification Code</label>
+                <input
+                  type="text"
+                  value={otp}
+                  onChange={(e) => setOtp(e.target.value.replace(/\D/g, '').slice(0, 6))}
+                  required
+                  placeholder="Enter 6-digit code"
+                  maxLength="6"
+                  autoFocus
+                  style={{ 
+                    fontSize: '1.5rem', 
+                    letterSpacing: '0.5rem', 
+                    textAlign: 'center',
+                    fontFamily: 'monospace'
+                  }}
+                />
+                {timeRemaining !== null && timeRemaining > 0 && (
+                  <p style={{ fontSize: '0.875rem', color: timeRemaining < 60 ? '#dc3545' : '#666', marginTop: '0.5rem', textAlign: 'center' }}>
+                    Code expires in: {formatTime(timeRemaining)}
+                  </p>
+                )}
+                {timeRemaining === 0 && (
+                  <p style={{ fontSize: '0.875rem', color: '#dc3545', marginTop: '0.5rem', textAlign: 'center' }}>
+                    Code expired. Please request a new one.
+                  </p>
+                )}
+              </div>
+              <button type="submit" disabled={loading || otp.length !== 6}>
+                {loading ? 'Verifying...' : 'Verify & Login'}
+              </button>
+              <div style={{ marginTop: '1rem', textAlign: 'center' }}>
+                <button
+                  type="button"
+                  onClick={handleResendOtp}
+                  disabled={loading || resendCooldown > 0}
+                  style={{
+                    background: 'transparent',
+                    border: 'none',
+                    color: '#6366f1',
+                    cursor: resendCooldown > 0 ? 'not-allowed' : 'pointer',
+                    textDecoration: 'underline',
+                    fontSize: '0.875rem'
+                  }}
+                >
+                  {resendCooldown > 0 
+                    ? `Resend code in ${resendCooldown}s` 
+                    : 'Resend verification code'}
+                </button>
+              </div>
+              <button
+                type="button"
+                onClick={() => {
+                  setLoginStep('password');
+                  setOtp('');
+                  setSessionId('');
+                  setOtpExpiresAt(null);
+                  setResendCooldown(0);
+                }}
+                style={{
+                  background: 'transparent',
+                  border: 'none',
+                  color: '#666',
+                  cursor: 'pointer',
+                  fontSize: '0.875rem',
+                  marginTop: '0.5rem',
+                  textAlign: 'center',
+                  width: '100%'
+                }}
+              >
+                ← Back to password
+              </button>
+              <p style={{ fontSize: '0.875rem', color: '#666', marginTop: '1rem', textAlign: 'center' }}>
+                Check your email ({process.env.REACT_APP_ADMIN_EMAIL || 'admin email'}) for the verification code.
+              </p>
+            </form>
+          )}
         </div>
       </div>
     );
@@ -260,6 +453,9 @@ const Admin = () => {
             <li className={activeSection === 'footer' ? 'active' : ''} onClick={() => setActiveSection('footer')}>
               Footer
             </li>
+            <li className={activeSection === 'blogs' ? 'active' : ''} onClick={() => setActiveSection('blogs')}>
+              Blogs
+            </li>
           </ul>
         </div>
 
@@ -279,7 +475,10 @@ const Admin = () => {
           {activeSection === 'footer' && content?.footer && (
             <FooterEditor content={content.footer} onUpdate={(data) => updateContent('footer', null, data)} />
           )}
-          {!content && (
+          {activeSection === 'blogs' && (
+            <BlogEditor token={token} />
+          )}
+          {!content && activeSection !== 'blogs' && (
             <div style={{ padding: '2rem', textAlign: 'center' }}>
               <p>No content available. Please check the server connection.</p>
             </div>
@@ -956,6 +1155,391 @@ const FooterEditor = ({ content, onUpdate }) => {
       </div>
 
       <button onClick={handleSave} className="save-btn">Save Footer</button>
+    </div>
+  );
+};
+
+// Blog Editor Component
+const BlogEditor = ({ token }) => {
+  const [blogs, setBlogs] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [editingBlog, setEditingBlog] = useState(null);
+  const [showForm, setShowForm] = useState(false);
+  const [formData, setFormData] = useState({
+    title: '',
+    excerpt: '',
+    content: '',
+    author: 'Venus Tech Team',
+    category: 'AI & Technology',
+    image: '',
+    featured: false,
+    slug: '',
+    date: new Date().toISOString().split('T')[0]
+  });
+  const [saveStatus, setSaveStatus] = useState('');
+
+  const categories = ['AI & Technology', 'ESG', 'Digital Strategy', 'Cloud Services', 'Software Development'];
+
+  useEffect(() => {
+    loadBlogs();
+  }, []);
+
+  const loadBlogs = async () => {
+    setLoading(true);
+    try {
+      const response = await fetch(getApiUrl('api/blogs'));
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const data = await response.json();
+      setBlogs(data);
+    } catch (error) {
+      console.error('Failed to load blogs:', error);
+      alert('Failed to load blogs: ' + error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleInputChange = (field, value) => {
+    setFormData(prev => ({
+      ...prev,
+      [field]: value
+    }));
+    
+    // Auto-generate slug from title
+    if (field === 'title' && !editingBlog) {
+      const slug = value
+        .toLowerCase()
+        .trim()
+        .replace(/[^\w\s-]/g, '')
+        .replace(/[\s_-]+/g, '-')
+        .replace(/^-+|-+$/g, '');
+      setFormData(prev => ({ ...prev, slug }));
+    }
+  };
+
+  const handleCreate = () => {
+    setEditingBlog(null);
+    setFormData({
+      title: '',
+      excerpt: '',
+      content: '',
+      author: 'Venus Tech Team',
+      category: 'AI & Technology',
+      image: '',
+      featured: false,
+      slug: '',
+      date: new Date().toISOString().split('T')[0]
+    });
+    setShowForm(true);
+  };
+
+  const handleEdit = (blog) => {
+    setEditingBlog(blog);
+    setFormData({
+      title: blog.title || '',
+      excerpt: blog.excerpt || '',
+      content: blog.content || '',
+      author: blog.author || 'Venus Tech Team',
+      category: blog.category || 'AI & Technology',
+      image: blog.image || '',
+      featured: blog.featured || false,
+      slug: blog.slug || '',
+      date: blog.date || new Date().toISOString().split('T')[0]
+    });
+    setShowForm(true);
+  };
+
+  const handleDelete = async (blogId) => {
+    if (!window.confirm('Are you sure you want to delete this blog?')) {
+      return;
+    }
+
+    setLoading(true);
+    setSaveStatus('');
+    try {
+      const response = await fetch(getApiUrl(`api/blogs/${blogId}`), {
+        method: 'DELETE',
+        headers: {
+          'Authorization': `Bearer ${token}`,
+        },
+      });
+
+      if (response.ok) {
+        setSaveStatus('success');
+        setTimeout(() => setSaveStatus(''), 3000);
+        loadBlogs();
+      } else {
+        const error = await response.json();
+        setSaveStatus('error');
+        alert(error.error || 'Failed to delete blog');
+      }
+    } catch (error) {
+      setSaveStatus('error');
+      alert('Error deleting blog: ' + error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setSaveStatus('');
+
+    try {
+      const url = editingBlog 
+        ? getApiUrl(`api/blogs/${editingBlog.id}`)
+        : getApiUrl('api/blogs');
+      
+      const method = editingBlog ? 'PUT' : 'POST';
+
+      const response = await fetch(url, {
+        method: method,
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        const result = await response.json();
+        setSaveStatus('success');
+        setTimeout(() => {
+          setSaveStatus('');
+          setShowForm(false);
+          setEditingBlog(null);
+        }, 2000);
+        loadBlogs();
+      } else {
+        const error = await response.json();
+        setSaveStatus('error');
+        alert(error.error || 'Failed to save blog');
+      }
+    } catch (error) {
+      setSaveStatus('error');
+      alert('Error saving blog: ' + error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleCancel = () => {
+    setShowForm(false);
+    setEditingBlog(null);
+    setFormData({
+      title: '',
+      excerpt: '',
+      content: '',
+      author: 'Venus Tech Team',
+      category: 'AI & Technology',
+      image: '',
+      featured: false,
+      slug: '',
+      date: new Date().toISOString().split('T')[0]
+    });
+  };
+
+  return (
+    <div className="editor-section">
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
+        <h2>Blog Management</h2>
+        {!showForm && (
+          <button onClick={handleCreate} className="save-btn" style={{ margin: 0 }}>
+            + Add New Blog
+          </button>
+        )}
+      </div>
+
+      {saveStatus === 'success' && (
+        <div className="save-status success">Blog saved successfully!</div>
+      )}
+      {saveStatus === 'error' && (
+        <div className="save-status error">Failed to save blog</div>
+      )}
+
+      {showForm ? (
+        <form onSubmit={handleSubmit} className="blog-form">
+          <div className="form-group">
+            <label>Title *</label>
+            <input
+              type="text"
+              value={formData.title}
+              onChange={(e) => handleInputChange('title', e.target.value)}
+              required
+              placeholder="Enter blog title"
+            />
+          </div>
+
+          <div className="form-group">
+            <label>Excerpt</label>
+            <textarea
+              value={formData.excerpt}
+              onChange={(e) => handleInputChange('excerpt', e.target.value)}
+              rows="3"
+              placeholder="Brief description (will be auto-generated from content if empty)"
+            />
+          </div>
+
+          <div className="form-group">
+            <label>Content *</label>
+            <textarea
+              value={formData.content}
+              onChange={(e) => handleInputChange('content', e.target.value)}
+              required
+              rows="15"
+              placeholder="Enter blog content (supports markdown-style formatting)"
+            />
+          </div>
+
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+            <div className="form-group">
+              <label>Author</label>
+              <input
+                type="text"
+                value={formData.author}
+                onChange={(e) => handleInputChange('author', e.target.value)}
+                placeholder="Author name"
+              />
+            </div>
+
+            <div className="form-group">
+              <label>Category</label>
+              <select
+                value={formData.category}
+                onChange={(e) => handleInputChange('category', e.target.value)}
+              >
+                {categories.map(cat => (
+                  <option key={cat} value={cat}>{cat}</option>
+                ))}
+              </select>
+            </div>
+          </div>
+
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem' }}>
+            <div className="form-group">
+              <label>Image URL</label>
+              <input
+                type="text"
+                value={formData.image}
+                onChange={(e) => handleInputChange('image', e.target.value)}
+                placeholder="/images/blog-image.jpg"
+              />
+            </div>
+
+            <div className="form-group">
+              <label>Date</label>
+              <input
+                type="date"
+                value={formData.date}
+                onChange={(e) => handleInputChange('date', e.target.value)}
+              />
+            </div>
+          </div>
+
+          <div className="form-group">
+            <label>Slug (URL-friendly)</label>
+            <input
+              type="text"
+              value={formData.slug}
+              onChange={(e) => handleInputChange('slug', e.target.value)}
+              placeholder="auto-generated-from-title"
+            />
+          </div>
+
+          <div className="form-group">
+            <label style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+              <input
+                type="checkbox"
+                checked={formData.featured}
+                onChange={(e) => handleInputChange('featured', e.target.checked)}
+              />
+              Featured Blog
+            </label>
+          </div>
+
+          <div style={{ display: 'flex', gap: '1rem', marginTop: '1.5rem' }}>
+            <button type="submit" className="save-btn" disabled={loading}>
+              {loading ? 'Saving...' : editingBlog ? 'Update Blog' : 'Create Blog'}
+            </button>
+            <button type="button" onClick={handleCancel} className="save-btn" style={{ background: '#6c757d' }}>
+              Cancel
+            </button>
+          </div>
+        </form>
+      ) : (
+        <div className="blogs-list">
+          {loading && blogs.length === 0 ? (
+            <div style={{ padding: '2rem', textAlign: 'center' }}>Loading blogs...</div>
+          ) : blogs.length === 0 ? (
+            <div style={{ padding: '2rem', textAlign: 'center' }}>
+              <p>No blogs found. Create your first blog!</p>
+            </div>
+          ) : (
+            <div className="blogs-table">
+              <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+                <thead>
+                  <tr style={{ borderBottom: '2px solid #ddd' }}>
+                    <th style={{ padding: '1rem', textAlign: 'left' }}>Title</th>
+                    <th style={{ padding: '1rem', textAlign: 'left' }}>Category</th>
+                    <th style={{ padding: '1rem', textAlign: 'left' }}>Date</th>
+                    <th style={{ padding: '1rem', textAlign: 'left' }}>Featured</th>
+                    <th style={{ padding: '1rem', textAlign: 'right' }}>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {blogs.map(blog => (
+                    <tr key={blog.id} style={{ borderBottom: '1px solid #eee' }}>
+                      <td style={{ padding: '1rem' }}>
+                        <strong>{blog.title}</strong>
+                        {blog.excerpt && (
+                          <div style={{ fontSize: '0.875rem', color: '#666', marginTop: '0.25rem' }}>
+                            {blog.excerpt.substring(0, 60)}...
+                          </div>
+                        )}
+                      </td>
+                      <td style={{ padding: '1rem' }}>{blog.category}</td>
+                      <td style={{ padding: '1rem' }}>{blog.date}</td>
+                      <td style={{ padding: '1rem' }}>
+                        {blog.featured ? (
+                          <span style={{ color: '#28a745', fontWeight: 'bold' }}>★ Featured</span>
+                        ) : (
+                          <span style={{ color: '#999' }}>—</span>
+                        )}
+                      </td>
+                      <td style={{ padding: '1rem', textAlign: 'right' }}>
+                        <div style={{ display: 'flex', gap: '0.5rem', justifyContent: 'flex-end' }}>
+                          <button
+                            onClick={() => handleEdit(blog)}
+                            className="save-btn"
+                            style={{ padding: '0.5rem 1rem', fontSize: '0.875rem', margin: 0 }}
+                          >
+                            Edit
+                          </button>
+                          <button
+                            onClick={() => handleDelete(blog.id)}
+                            className="save-btn"
+                            style={{ 
+                              padding: '0.5rem 1rem', 
+                              fontSize: '0.875rem', 
+                              margin: 0,
+                              background: '#dc3545'
+                            }}
+                          >
+                            Delete
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 };
