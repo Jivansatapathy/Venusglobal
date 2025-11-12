@@ -61,7 +61,6 @@ const writeContent = async (content) => {
 let transporter = null;
 const emailUser = process.env.EMAIL_USER;
 const emailPass = process.env.EMAIL_PASS;
-const adminEmail = process.env.ADMIN_EMAIL || process.env.EMAIL_USER || 'admin@venusglobaltech.com';
 
 if (emailUser && emailPass && emailUser !== 'your-email@gmail.com' && emailPass !== 'your-app-password') {
   try {
@@ -89,77 +88,6 @@ if (emailUser && emailPass && emailUser !== 'your-email@gmail.com' && emailPass 
 } else {
   console.log('Email not configured - contact form emails will be disabled');
 }
-
-// ============================================================================
-// TWO-FACTOR AUTHENTICATION (2FA) - OTP Storage
-// ============================================================================
-
-// In-memory OTP storage (in production, use Redis or database)
-const otpStore = new Map();
-
-// OTP expiration time (5 minutes)
-const OTP_EXPIRATION_TIME = 5 * 60 * 1000; // 5 minutes in milliseconds
-
-// Generate 6-digit OTP
-function generateOTP() {
-  return Math.floor(100000 + Math.random() * 900000).toString();
-}
-
-// Store OTP with expiration
-function storeOTP(sessionId, otp) {
-  const expiresAt = Date.now() + OTP_EXPIRATION_TIME;
-  otpStore.set(sessionId, {
-    otp,
-    expiresAt,
-    attempts: 0,
-    maxAttempts: 5
-  });
-  
-  // Auto-cleanup expired OTPs
-  setTimeout(() => {
-    otpStore.delete(sessionId);
-  }, OTP_EXPIRATION_TIME);
-  
-  return expiresAt;
-}
-
-// Verify OTP
-function verifyOTP(sessionId, providedOTP) {
-  const stored = otpStore.get(sessionId);
-  
-  if (!stored) {
-    return { valid: false, error: 'OTP expired or invalid session' };
-  }
-  
-  if (Date.now() > stored.expiresAt) {
-    otpStore.delete(sessionId);
-    return { valid: false, error: 'OTP has expired' };
-  }
-  
-  if (stored.attempts >= stored.maxAttempts) {
-    otpStore.delete(sessionId);
-    return { valid: false, error: 'Too many failed attempts. Please request a new OTP.' };
-  }
-  
-  if (stored.otp !== providedOTP) {
-    stored.attempts++;
-    return { valid: false, error: 'Invalid OTP', attemptsRemaining: stored.maxAttempts - stored.attempts };
-  }
-  
-  // OTP is valid - remove it
-  otpStore.delete(sessionId);
-  return { valid: true };
-}
-
-// Cleanup expired OTPs periodically
-setInterval(() => {
-  const now = Date.now();
-  for (const [sessionId, data] of otpStore.entries()) {
-    if (now > data.expiresAt) {
-      otpStore.delete(sessionId);
-    }
-  }
-}, 60000); // Cleanup every minute
 
 // Content Management API Endpoints
 
@@ -219,163 +147,21 @@ app.put('/api/content/:section/:subsection', authenticateAdmin, async (req, res)
   }
 });
 
-// ============================================================================
-// TWO-FACTOR AUTHENTICATION ENDPOINTS
-// ============================================================================
-
-// Step 1: Verify password and send OTP via email
+// Admin login endpoint
 app.post('/api/admin/login', async (req, res) => {
   try {
     const { password } = req.body;
+    // Simple password check - in production, use proper authentication
     const adminPassword = process.env.ADMIN_PASSWORD || 'admin123';
-    
-    if (password !== adminPassword) {
-      return res.status(401).json({ error: 'Invalid password' });
-    }
-    
-    // Check if email is configured
-    if (!transporter) {
-      return res.status(503).json({ 
-        error: 'Email service not configured. Please configure EMAIL_USER and EMAIL_PASS in .env file.' 
-      });
-    }
-    
-    // Generate OTP and session ID
-    const sessionId = `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
-    const otp = generateOTP();
-    const expiresAt = storeOTP(sessionId, otp);
-    
-    // Send OTP via email
-    try {
-      const mailOptions = {
-        from: emailUser,
-        to: adminEmail,
-        subject: 'Admin Login - Verification Code',
-        html: `
-          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-            <h2 style="color: #333;">Admin Login Verification</h2>
-            <p>You have requested to log in to the admin panel.</p>
-            <p style="font-size: 24px; font-weight: bold; color: #6366f1; letter-spacing: 5px; text-align: center; padding: 20px; background: #f3f4f6; border-radius: 8px; margin: 20px 0;">
-              ${otp}
-            </p>
-            <p>This code will expire in 5 minutes.</p>
-            <p style="color: #666; font-size: 12px; margin-top: 30px;">
-              If you didn't request this code, please ignore this email or contact support.
-            </p>
-          </div>
-        `,
-        text: `Your admin login verification code is: ${otp}. This code will expire in 5 minutes.`
-      };
-      
-      await transporter.sendMail(mailOptions);
-      console.log(`OTP sent to ${adminEmail} for session ${sessionId}`);
-      
-      res.json({
-        sessionId,
-        message: 'Password verified. OTP sent to your email.',
-        expiresAt: new Date(expiresAt).toISOString()
-      });
-    } catch (emailError) {
-      console.error('Error sending OTP email:', emailError);
-      otpStore.delete(sessionId); // Clean up on error
-      return res.status(500).json({ 
-        error: 'Failed to send verification email. Please check email configuration.' 
-      });
+    if (password === adminPassword) {
+      // Return a simple token
+      const token = process.env.ADMIN_TOKEN || 'admin-token-123';
+      res.json({ token, message: 'Login successful' });
+    } else {
+      res.status(401).json({ error: 'Invalid password' });
     }
   } catch (error) {
-    console.error('Login error:', error);
     res.status(500).json({ error: 'Login failed' });
-  }
-});
-
-// Step 2: Verify OTP and complete login
-app.post('/api/admin/verify-otp', async (req, res) => {
-  try {
-    const { sessionId, otp } = req.body;
-    
-    if (!sessionId || !otp) {
-      return res.status(400).json({ error: 'Session ID and OTP are required' });
-    }
-    
-    const verification = verifyOTP(sessionId, otp);
-    
-    if (!verification.valid) {
-      return res.status(401).json({ 
-        error: verification.error,
-        attemptsRemaining: verification.attemptsRemaining
-      });
-    }
-    
-    // OTP is valid - return authentication token
-    const token = process.env.ADMIN_TOKEN || 'admin-token-123';
-    res.json({
-      token,
-      message: 'Login successful'
-    });
-  } catch (error) {
-    console.error('OTP verification error:', error);
-    res.status(500).json({ error: 'OTP verification failed' });
-  }
-});
-
-// Resend OTP endpoint
-app.post('/api/admin/resend-otp', async (req, res) => {
-  try {
-    const { sessionId } = req.body;
-    
-    if (!sessionId) {
-      return res.status(400).json({ error: 'Session ID is required' });
-    }
-    
-    // Check if email is configured
-    if (!transporter) {
-      return res.status(503).json({ 
-        error: 'Email service not configured' 
-      });
-    }
-    
-    // Generate new OTP
-    const otp = generateOTP();
-    const expiresAt = storeOTP(sessionId, otp);
-    
-    // Send new OTP via email
-    try {
-      const mailOptions = {
-        from: emailUser,
-        to: adminEmail,
-        subject: 'Admin Login - New Verification Code',
-        html: `
-          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-            <h2 style="color: #333;">New Verification Code</h2>
-            <p>You have requested a new verification code for admin login.</p>
-            <p style="font-size: 24px; font-weight: bold; color: #6366f1; letter-spacing: 5px; text-align: center; padding: 20px; background: #f3f4f6; border-radius: 8px; margin: 20px 0;">
-              ${otp}
-            </p>
-            <p>This code will expire in 5 minutes.</p>
-            <p style="color: #666; font-size: 12px; margin-top: 30px;">
-              If you didn't request this code, please ignore this email or contact support.
-            </p>
-          </div>
-        `,
-        text: `Your new admin login verification code is: ${otp}. This code will expire in 5 minutes.`
-      };
-      
-      await transporter.sendMail(mailOptions);
-      console.log(`New OTP sent to ${adminEmail} for session ${sessionId}`);
-      
-      res.json({
-        message: 'New OTP sent to your email.',
-        expiresAt: new Date(expiresAt).toISOString()
-      });
-    } catch (emailError) {
-      console.error('Error sending OTP email:', emailError);
-      return res.status(500).json({ 
-        error: 'Failed to send verification email' 
-      });
-    }
-  } catch (error) {
-    console.error('Resend OTP error:', error);
-    res.status(500).json({ error: 'Failed to resend OTP' });
   }
 });
 

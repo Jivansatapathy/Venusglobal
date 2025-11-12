@@ -6,17 +6,11 @@ const Admin = () => {
   console.log('Admin component rendered');
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [password, setPassword] = useState('');
-  const [otp, setOtp] = useState('');
-  const [sessionId, setSessionId] = useState('');
-  const [loginStep, setLoginStep] = useState('password'); // 'password' or 'otp'
   const [token, setToken] = useState('');
   const [content, setContent] = useState(null);
   const [loading, setLoading] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
   const [saveStatus, setSaveStatus] = useState('');
-  const [otpExpiresAt, setOtpExpiresAt] = useState(null);
-  const [timeRemaining, setTimeRemaining] = useState(null);
-  const [resendCooldown, setResendCooldown] = useState(0);
 
   useEffect(() => {
     // Check if already authenticated
@@ -28,39 +22,7 @@ const Admin = () => {
     }
   }, []);
 
-  // Countdown timer for OTP expiration
-  useEffect(() => {
-    if (!otpExpiresAt) return;
-
-    const updateTimer = () => {
-      const now = new Date().getTime();
-      const expires = new Date(otpExpiresAt).getTime();
-      const remaining = Math.max(0, Math.floor((expires - now) / 1000));
-      setTimeRemaining(remaining);
-
-      if (remaining === 0) {
-        setOtpExpiresAt(null);
-      }
-    };
-
-    updateTimer();
-    const interval = setInterval(updateTimer, 1000);
-    return () => clearInterval(interval);
-  }, [otpExpiresAt]);
-
-  // Resend cooldown timer
-  useEffect(() => {
-    if (resendCooldown <= 0) return;
-
-    const timer = setTimeout(() => {
-      setResendCooldown(resendCooldown - 1);
-    }, 1000);
-
-    return () => clearTimeout(timer);
-  }, [resendCooldown]);
-
-  // Step 1: Verify password and request OTP
-  const handlePasswordSubmit = async (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
     setLoading(true);
     try {
@@ -70,6 +32,7 @@ const Admin = () => {
         body: JSON.stringify({ password }),
       });
       
+      // Check content type before parsing
       const contentType = response.headers.get('content-type');
       let data;
       
@@ -82,6 +45,7 @@ const Admin = () => {
           return;
         }
       } else {
+        // If not JSON, get text response
         const text = await response.text();
         alert('Server error: ' + (text || 'Invalid response from server. Please check if the server is running.'));
         setLoading(false);
@@ -89,12 +53,10 @@ const Admin = () => {
       }
       
       if (response.ok) {
-        // Password verified - move to OTP step
-        setSessionId(data.sessionId);
-        setOtpExpiresAt(data.expiresAt);
-        setLoginStep('otp');
-        setResendCooldown(30); // 30 second cooldown for resend
-        alert('Password verified! Check your email for the verification code.');
+        setToken(data.token);
+        localStorage.setItem('adminToken', data.token);
+        setIsAuthenticated(true);
+        loadContent();
       } else {
         alert(data.error || 'Login failed');
       }
@@ -103,76 +65,6 @@ const Admin = () => {
     } finally {
       setLoading(false);
     }
-  };
-
-  // Step 2: Verify OTP
-  const handleOtpSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    try {
-      const response = await fetch(getApiUrl('api/admin/verify-otp'), {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ sessionId, otp }),
-      });
-      
-      const data = await response.json();
-      
-      if (response.ok) {
-        setToken(data.token);
-        localStorage.setItem('adminToken', data.token);
-        setIsAuthenticated(true);
-        setLoginStep('password');
-        setOtp('');
-        setSessionId('');
-        setOtpExpiresAt(null);
-        loadContent();
-      } else {
-        alert(data.error || 'Invalid verification code');
-        if (data.attemptsRemaining !== undefined) {
-          alert(`Attempts remaining: ${data.attemptsRemaining}`);
-        }
-      }
-    } catch (error) {
-      alert('Verification error: ' + error.message);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  // Resend OTP
-  const handleResendOtp = async () => {
-    if (resendCooldown > 0) return;
-    
-    setLoading(true);
-    try {
-      const response = await fetch(getApiUrl('api/admin/resend-otp'), {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ sessionId }),
-      });
-      
-      const data = await response.json();
-      
-      if (response.ok) {
-        setOtpExpiresAt(data.expiresAt);
-        setResendCooldown(30);
-        setOtp(''); // Clear current OTP input
-        alert('New verification code sent to your email!');
-      } else {
-        alert(data.error || 'Failed to resend code');
-      }
-    } catch (error) {
-      alert('Error: ' + error.message);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const formatTime = (seconds) => {
-    const mins = Math.floor(seconds / 60);
-    const secs = seconds % 60;
-    return `${mins}:${secs.toString().padStart(2, '0')}`;
   };
 
   const handleLogout = () => {
@@ -291,106 +183,21 @@ const Admin = () => {
       <div className="admin-login">
         <div className="admin-login-container">
           <h1>Admin Login</h1>
-          
-          {loginStep === 'password' ? (
-            <form onSubmit={handlePasswordSubmit}>
-              <div className="form-group">
-                <label>Password</label>
-                <input
-                  type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                  placeholder="Enter admin password"
-                  autoFocus
-                />
-              </div>
-              <button type="submit" disabled={loading}>
-                {loading ? 'Verifying...' : 'Continue'}
-              </button>
-              <p style={{ fontSize: '0.875rem', color: '#666', marginTop: '1rem', textAlign: 'center' }}>
-                After entering your password, you'll receive a verification code via email.
-              </p>
-            </form>
-          ) : (
-            <form onSubmit={handleOtpSubmit}>
-              <div className="form-group">
-                <label>Verification Code</label>
-                <input
-                  type="text"
-                  value={otp}
-                  onChange={(e) => setOtp(e.target.value.replace(/\D/g, '').slice(0, 6))}
-                  required
-                  placeholder="Enter 6-digit code"
-                  maxLength="6"
-                  autoFocus
-                  style={{ 
-                    fontSize: '1.5rem', 
-                    letterSpacing: '0.5rem', 
-                    textAlign: 'center',
-                    fontFamily: 'monospace'
-                  }}
-                />
-                {timeRemaining !== null && timeRemaining > 0 && (
-                  <p style={{ fontSize: '0.875rem', color: timeRemaining < 60 ? '#dc3545' : '#666', marginTop: '0.5rem', textAlign: 'center' }}>
-                    Code expires in: {formatTime(timeRemaining)}
-                  </p>
-                )}
-                {timeRemaining === 0 && (
-                  <p style={{ fontSize: '0.875rem', color: '#dc3545', marginTop: '0.5rem', textAlign: 'center' }}>
-                    Code expired. Please request a new one.
-                  </p>
-                )}
-              </div>
-              <button type="submit" disabled={loading || otp.length !== 6}>
-                {loading ? 'Verifying...' : 'Verify & Login'}
-              </button>
-              <div style={{ marginTop: '1rem', textAlign: 'center' }}>
-                <button
-                  type="button"
-                  onClick={handleResendOtp}
-                  disabled={loading || resendCooldown > 0}
-                  style={{
-                    background: 'transparent',
-                    border: 'none',
-                    color: '#6366f1',
-                    cursor: resendCooldown > 0 ? 'not-allowed' : 'pointer',
-                    textDecoration: 'underline',
-                    fontSize: '0.875rem'
-                  }}
-                >
-                  {resendCooldown > 0 
-                    ? `Resend code in ${resendCooldown}s` 
-                    : 'Resend verification code'}
-                </button>
-              </div>
-              <button
-                type="button"
-                onClick={() => {
-                  setLoginStep('password');
-                  setOtp('');
-                  setSessionId('');
-                  setOtpExpiresAt(null);
-                  setResendCooldown(0);
-                }}
-                style={{
-                  background: 'transparent',
-                  border: 'none',
-                  color: '#666',
-                  cursor: 'pointer',
-                  fontSize: '0.875rem',
-                  marginTop: '0.5rem',
-                  textAlign: 'center',
-                  width: '100%'
-                }}
-              >
-                ← Back to password
-              </button>
-              <p style={{ fontSize: '0.875rem', color: '#666', marginTop: '1rem', textAlign: 'center' }}>
-                Check your email ({process.env.REACT_APP_ADMIN_EMAIL || 'admin email'}) for the verification code.
-              </p>
-            </form>
-          )}
+          <form onSubmit={handleLogin}>
+            <div className="form-group">
+              <label>Password</label>
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                placeholder="Enter admin password"
+              />
+            </div>
+            <button type="submit" disabled={loading}>
+              {loading ? 'Logging in...' : 'Login'}
+            </button>
+          </form>
         </div>
       </div>
     );
