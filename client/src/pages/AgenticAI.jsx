@@ -117,64 +117,100 @@ const AgenticAI = () => {
           </div>
           
           <div className="agentic-benefits-grid">
-            <div className="agentic-benefit-card">
-              <div className="agentic-benefit-icon">
-                <i className="fas fa-rocket"></i>
+            <div className="agentic-benefit-flip-card">
+              <div className="agentic-benefit-flip-inner">
+                <div className="agentic-benefit-flip-front">
+                  <div className="agentic-benefit-icon">
+                    <i className="fas fa-rocket"></i>
+                  </div>
+                  <h3 className="agentic-benefit-title">Increased Efficiency</h3>
+                </div>
+                <div className="agentic-benefit-flip-back">
+                  <p className="agentic-benefit-description">
+                    Automate complex workflows and reduce manual tasks by up to 80%, allowing your team to focus on strategic initiatives.
+                  </p>
+                </div>
               </div>
-              <h3 className="agentic-benefit-title">Increased Efficiency</h3>
-              <p className="agentic-benefit-description">
-                Automate complex workflows and reduce manual tasks by up to 80%, allowing your team to focus on strategic initiatives.
-              </p>
             </div>
             
-            <div className="agentic-benefit-card">
-              <div className="agentic-benefit-icon">
-                <i className="fas fa-dollar-sign"></i>
+            <div className="agentic-benefit-flip-card">
+              <div className="agentic-benefit-flip-inner">
+                <div className="agentic-benefit-flip-front">
+                  <div className="agentic-benefit-icon">
+                    <i className="fas fa-dollar-sign"></i>
+                  </div>
+                  <h3 className="agentic-benefit-title">Cost Reduction</h3>
+                </div>
+                <div className="agentic-benefit-flip-back">
+                  <p className="agentic-benefit-description">
+                    Significantly reduce operational costs through intelligent automation and optimized resource allocation.
+                  </p>
+                </div>
               </div>
-              <h3 className="agentic-benefit-title">Cost Reduction</h3>
-              <p className="agentic-benefit-description">
-                Significantly reduce operational costs through intelligent automation and optimized resource allocation.
-              </p>
             </div>
             
-            <div className="agentic-benefit-card">
-              <div className="agentic-benefit-icon">
-                <i className="fas fa-chart-line"></i>
+            <div className="agentic-benefit-flip-card">
+              <div className="agentic-benefit-flip-inner">
+                <div className="agentic-benefit-flip-front">
+                  <div className="agentic-benefit-icon">
+                    <i className="fas fa-chart-line"></i>
+                  </div>
+                  <h3 className="agentic-benefit-title">Better Decision Making</h3>
+                </div>
+                <div className="agentic-benefit-flip-back">
+                  <p className="agentic-benefit-description">
+                    Leverage real-time data analysis and predictive insights to make informed decisions faster than ever before.
+                  </p>
+                </div>
               </div>
-              <h3 className="agentic-benefit-title">Better Decision Making</h3>
-              <p className="agentic-benefit-description">
-                Leverage real-time data analysis and predictive insights to make informed decisions faster than ever before.
-              </p>
             </div>
             
-            <div className="agentic-benefit-card">
-              <div className="agentic-benefit-icon">
-                <i className="fas fa-clock"></i>
+            <div className="agentic-benefit-flip-card">
+              <div className="agentic-benefit-flip-inner">
+                <div className="agentic-benefit-flip-front">
+                  <div className="agentic-benefit-icon">
+                    <i className="fas fa-clock"></i>
+                  </div>
+                  <h3 className="agentic-benefit-title">24/7 Operations</h3>
+                </div>
+                <div className="agentic-benefit-flip-back">
+                  <p className="agentic-benefit-description">
+                    Maintain continuous operations with AI agents that work around the clock without breaks or downtime.
+                  </p>
+                </div>
               </div>
-              <h3 className="agentic-benefit-title">24/7 Operations</h3>
-              <p className="agentic-benefit-description">
-                Maintain continuous operations with AI agents that work around the clock without breaks or downtime.
-              </p>
             </div>
             
-            <div className="agentic-benefit-card">
-              <div className="agentic-benefit-icon">
-                <i className="fas fa-shield-alt"></i>
+            <div className="agentic-benefit-flip-card">
+              <div className="agentic-benefit-flip-inner">
+                <div className="agentic-benefit-flip-front">
+                  <div className="agentic-benefit-icon">
+                    <i className="fas fa-shield-alt"></i>
+                  </div>
+                  <h3 className="agentic-benefit-title">Enhanced Security</h3>
+                </div>
+                <div className="agentic-benefit-flip-back">
+                  <p className="agentic-benefit-description">
+                    Advanced threat detection and automated security protocols to protect your business from emerging risks.
+                  </p>
+                </div>
               </div>
-              <h3 className="agentic-benefit-title">Enhanced Security</h3>
-              <p className="agentic-benefit-description">
-                Advanced threat detection and automated security protocols to protect your business from emerging risks.
-              </p>
             </div>
             
-            <div className="agentic-benefit-card">
-              <div className="agentic-benefit-icon">
-                <i className="fas fa-users"></i>
+            <div className="agentic-benefit-flip-card">
+              <div className="agentic-benefit-flip-inner">
+                <div className="agentic-benefit-flip-front">
+                  <div className="agentic-benefit-icon">
+                    <i className="fas fa-users"></i>
+                  </div>
+                  <h3 className="agentic-benefit-title">Improved Customer Experience</h3>
+                </div>
+                <div className="agentic-benefit-flip-back">
+                  <p className="agentic-benefit-description">
+                    Deliver personalized, instant responses and support that exceeds customer expectations every time.
+                  </p>
+                </div>
               </div>
-              <h3 className="agentic-benefit-title">Improved Customer Experience</h3>
-              <p className="agentic-benefit-description">
-                Deliver personalized, instant responses and support that exceeds customer expectations every time.
-              </p>
             </div>
           </div>
         </div>

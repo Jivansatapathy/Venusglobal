@@ -116,64 +116,100 @@ const DigitalReach = () => {
           </div>
           
           <div className="digital-benefits-grid">
-            <div className="digital-benefit-card">
-              <div className="digital-benefit-icon">
-                <i className="fas fa-eye"></i>
+            <div className="digital-benefit-flip-card">
+              <div className="digital-benefit-flip-inner">
+                <div className="digital-benefit-flip-front">
+                  <div className="digital-benefit-icon">
+                    <i className="fas fa-eye"></i>
+                  </div>
+                  <h3 className="digital-benefit-title">Increased Visibility</h3>
+                </div>
+                <div className="digital-benefit-flip-back">
+                  <p className="digital-benefit-description">
+                    Boost your brand's online presence and reach a wider audience across multiple digital platforms and channels.
+                  </p>
+                </div>
               </div>
-              <h3 className="digital-benefit-title">Increased Visibility</h3>
-              <p className="digital-benefit-description">
-                Boost your brand's online presence and reach a wider audience across multiple digital platforms and channels.
-              </p>
             </div>
             
-            <div className="digital-benefit-card">
-              <div className="digital-benefit-icon">
-                <i className="fas fa-users"></i>
+            <div className="digital-benefit-flip-card">
+              <div className="digital-benefit-flip-inner">
+                <div className="digital-benefit-flip-front">
+                  <div className="digital-benefit-icon">
+                    <i className="fas fa-users"></i>
+                  </div>
+                  <h3 className="digital-benefit-title">Targeted Engagement</h3>
+                </div>
+                <div className="digital-benefit-flip-back">
+                  <p className="digital-benefit-description">
+                    Connect with your ideal customers through precise targeting and personalized digital marketing strategies.
+                  </p>
+                </div>
               </div>
-              <h3 className="digital-benefit-title">Targeted Engagement</h3>
-              <p className="digital-benefit-description">
-                Connect with your ideal customers through precise targeting and personalized digital marketing strategies.
-              </p>
             </div>
             
-            <div className="digital-benefit-card">
-              <div className="digital-benefit-icon">
-                <i className="fas fa-chart-line"></i>
+            <div className="digital-benefit-flip-card">
+              <div className="digital-benefit-flip-inner">
+                <div className="digital-benefit-flip-front">
+                  <div className="digital-benefit-icon">
+                    <i className="fas fa-chart-line"></i>
+                  </div>
+                  <h3 className="digital-benefit-title">Measurable Results</h3>
+                </div>
+                <div className="digital-benefit-flip-back">
+                  <p className="digital-benefit-description">
+                    Track and measure your digital marketing performance with detailed analytics and ROI reporting.
+                  </p>
+                </div>
               </div>
-              <h3 className="digital-benefit-title">Measurable Results</h3>
-              <p className="digital-benefit-description">
-                Track and measure your digital marketing performance with detailed analytics and ROI reporting.
-              </p>
             </div>
             
-            <div className="digital-benefit-card">
-              <div className="digital-benefit-icon">
-                <i className="fas fa-mobile-alt"></i>
+            <div className="digital-benefit-flip-card">
+              <div className="digital-benefit-flip-inner">
+                <div className="digital-benefit-flip-front">
+                  <div className="digital-benefit-icon">
+                    <i className="fas fa-mobile-alt"></i>
+                  </div>
+                  <h3 className="digital-benefit-title">Multi-Platform Reach</h3>
+                </div>
+                <div className="digital-benefit-flip-back">
+                  <p className="digital-benefit-description">
+                    Extend your reach across social media, search engines, email, and other digital channels simultaneously.
+                  </p>
+                </div>
               </div>
-              <h3 className="digital-benefit-title">Multi-Platform Reach</h3>
-              <p className="digital-benefit-description">
-                Extend your reach across social media, search engines, email, and other digital channels simultaneously.
-              </p>
             </div>
             
-            <div className="digital-benefit-card">
-              <div className="digital-benefit-icon">
-                <i className="fas fa-dollar-sign"></i>
+            <div className="digital-benefit-flip-card">
+              <div className="digital-benefit-flip-inner">
+                <div className="digital-benefit-flip-front">
+                  <div className="digital-benefit-icon">
+                    <i className="fas fa-dollar-sign"></i>
+                  </div>
+                  <h3 className="digital-benefit-title">Cost-Effective Marketing</h3>
+                </div>
+                <div className="digital-benefit-flip-back">
+                  <p className="digital-benefit-description">
+                    Maximize your marketing budget with efficient digital strategies that deliver better results at lower costs.
+                  </p>
+                </div>
               </div>
-              <h3 className="digital-benefit-title">Cost-Effective Marketing</h3>
-              <p className="digital-benefit-description">
-                Maximize your marketing budget with efficient digital strategies that deliver better results at lower costs.
-              </p>
             </div>
             
-            <div className="digital-benefit-card">
-              <div className="digital-benefit-icon">
-                <i className="fas fa-rocket"></i>
+            <div className="digital-benefit-flip-card">
+              <div className="digital-benefit-flip-inner">
+                <div className="digital-benefit-flip-front">
+                  <div className="digital-benefit-icon">
+                    <i className="fas fa-rocket"></i>
+                  </div>
+                  <h3 className="digital-benefit-title">Rapid Growth</h3>
+                </div>
+                <div className="digital-benefit-flip-back">
+                  <p className="digital-benefit-description">
+                    Accelerate your business growth with scalable digital marketing solutions that adapt to your needs.
+                  </p>
+                </div>
               </div>
-              <h3 className="digital-benefit-title">Rapid Growth</h3>
-              <p className="digital-benefit-description">
-                Accelerate your business growth with scalable digital marketing solutions that adapt to your needs.
-              </p>
             </div>
           </div>
         </div>

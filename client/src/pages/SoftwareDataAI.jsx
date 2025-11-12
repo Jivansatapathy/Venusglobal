@@ -107,64 +107,100 @@ const SoftwareDataAI = () => {
           </div>
           
           <div className="software-data-benefits-grid">
-            <div className="software-data-benefit-card">
-              <div className="software-data-benefit-icon">
-                <i className="fas fa-code"></i>
+            <div className="software-data-benefit-flip-card">
+              <div className="software-data-benefit-flip-inner">
+                <div className="software-data-benefit-flip-front">
+                  <div className="software-data-benefit-icon">
+                    <i className="fas fa-code"></i>
+                  </div>
+                  <h3 className="software-data-benefit-title">Custom Software Development</h3>
+                </div>
+                <div className="software-data-benefit-flip-back">
+                  <p className="software-data-benefit-description">
+                    Build scalable, robust applications tailored to your specific business needs with modern technologies and best practices.
+                  </p>
+                </div>
               </div>
-              <h3 className="software-data-benefit-title">Custom Software Development</h3>
-              <p className="software-data-benefit-description">
-                Build scalable, robust applications tailored to your specific business needs with modern technologies and best practices.
-              </p>
             </div>
             
-            <div className="software-data-benefit-card">
-              <div className="software-data-benefit-icon">
-                <i className="fas fa-brain"></i>
+            <div className="software-data-benefit-flip-card">
+              <div className="software-data-benefit-flip-inner">
+                <div className="software-data-benefit-flip-front">
+                  <div className="software-data-benefit-icon">
+                    <i className="fas fa-brain"></i>
+                  </div>
+                  <h3 className="software-data-benefit-title">Intelligent Data Analytics</h3>
+                </div>
+                <div className="software-data-benefit-flip-back">
+                  <p className="software-data-benefit-description">
+                    Unlock insights from your data with advanced AI algorithms, machine learning models, and predictive analytics.
+                  </p>
+                </div>
               </div>
-              <h3 className="software-data-benefit-title">Intelligent Data Analytics</h3>
-              <p className="software-data-benefit-description">
-                Unlock insights from your data with advanced AI algorithms, machine learning models, and predictive analytics.
-              </p>
             </div>
             
-            <div className="software-data-benefit-card">
-              <div className="software-data-benefit-icon">
-                <i className="fas fa-chart-line"></i>
+            <div className="software-data-benefit-flip-card">
+              <div className="software-data-benefit-flip-inner">
+                <div className="software-data-benefit-flip-front">
+                  <div className="software-data-benefit-icon">
+                    <i className="fas fa-chart-line"></i>
+                  </div>
+                  <h3 className="software-data-benefit-title">Business Intelligence</h3>
+                </div>
+                <div className="software-data-benefit-flip-back">
+                  <p className="software-data-benefit-description">
+                    Transform raw data into actionable insights with comprehensive dashboards and real-time reporting systems.
+                  </p>
+                </div>
               </div>
-              <h3 className="software-data-benefit-title">Business Intelligence</h3>
-              <p className="software-data-benefit-description">
-                Transform raw data into actionable insights with comprehensive dashboards and real-time reporting systems.
-              </p>
             </div>
             
-            <div className="software-data-benefit-card">
-              <div className="software-data-benefit-icon">
-                <i className="fas fa-cogs"></i>
+            <div className="software-data-benefit-flip-card">
+              <div className="software-data-benefit-flip-inner">
+                <div className="software-data-benefit-flip-front">
+                  <div className="software-data-benefit-icon">
+                    <i className="fas fa-cogs"></i>
+                  </div>
+                  <h3 className="software-data-benefit-title">Process Automation</h3>
+                </div>
+                <div className="software-data-benefit-flip-back">
+                  <p className="software-data-benefit-description">
+                    Automate complex workflows and business processes to increase efficiency and reduce manual errors.
+                  </p>
+                </div>
               </div>
-              <h3 className="software-data-benefit-title">Process Automation</h3>
-              <p className="software-data-benefit-description">
-                Automate complex workflows and business processes to increase efficiency and reduce manual errors.
-              </p>
             </div>
             
-            <div className="software-data-benefit-card">
-              <div className="software-data-benefit-icon">
-                <i className="fas fa-shield-alt"></i>
+            <div className="software-data-benefit-flip-card">
+              <div className="software-data-benefit-flip-inner">
+                <div className="software-data-benefit-flip-front">
+                  <div className="software-data-benefit-icon">
+                    <i className="fas fa-shield-alt"></i>
+                  </div>
+                  <h3 className="software-data-benefit-title">Data Security & Compliance</h3>
+                </div>
+                <div className="software-data-benefit-flip-back">
+                  <p className="software-data-benefit-description">
+                    Ensure your data and applications are secure with enterprise-grade security measures and compliance standards.
+                  </p>
+                </div>
               </div>
-              <h3 className="software-data-benefit-title">Data Security & Compliance</h3>
-              <p className="software-data-benefit-description">
-                Ensure your data and applications are secure with enterprise-grade security measures and compliance standards.
-              </p>
             </div>
             
-            <div className="software-data-benefit-card">
-              <div className="software-data-benefit-icon">
-                <i className="fas fa-rocket"></i>
+            <div className="software-data-benefit-flip-card">
+              <div className="software-data-benefit-flip-inner">
+                <div className="software-data-benefit-flip-front">
+                  <div className="software-data-benefit-icon">
+                    <i className="fas fa-rocket"></i>
+                  </div>
+                  <h3 className="software-data-benefit-title">Scalable Solutions</h3>
+                </div>
+                <div className="software-data-benefit-flip-back">
+                  <p className="software-data-benefit-description">
+                    Build solutions that grow with your business, from startup to enterprise scale with cloud-native architectures.
+                  </p>
+                </div>
               </div>
-              <h3 className="software-data-benefit-title">Scalable Solutions</h3>
-              <p className="software-data-benefit-description">
-                Build solutions that grow with your business, from startup to enterprise scale with cloud-native architectures.
-              </p>
             </div>
           </div>
         </div>

@@ -107,64 +107,100 @@ const IATFAuditing = () => {
           </div>
           
           <div className="iatf-benefits-grid">
-            <div className="iatf-benefit-card">
-              <div className="iatf-benefit-icon">
-                <i className="fas fa-certificate"></i>
+            <div className="iatf-benefit-flip-card">
+              <div className="iatf-benefit-flip-inner">
+                <div className="iatf-benefit-flip-front">
+                  <div className="iatf-benefit-icon">
+                    <i className="fas fa-certificate"></i>
+                  </div>
+                  <h3 className="iatf-benefit-title">IATF 16949 Certification</h3>
+                </div>
+                <div className="iatf-benefit-flip-back">
+                  <p className="iatf-benefit-description">
+                    Achieve and maintain IATF 16949 certification with our comprehensive auditing and compliance services.
+                  </p>
+                </div>
               </div>
-              <h3 className="iatf-benefit-title">IATF 16949 Certification</h3>
-              <p className="iatf-benefit-description">
-                Achieve and maintain IATF 16949 certification with our comprehensive auditing and compliance services.
-              </p>
             </div>
             
-            <div className="iatf-benefit-card">
-              <div className="iatf-benefit-icon">
-                <i className="fas fa-shield-alt"></i>
+            <div className="iatf-benefit-flip-card">
+              <div className="iatf-benefit-flip-inner">
+                <div className="iatf-benefit-flip-front">
+                  <div className="iatf-benefit-icon">
+                    <i className="fas fa-shield-alt"></i>
+                  </div>
+                  <h3 className="iatf-benefit-title">Quality Assurance</h3>
+                </div>
+                <div className="iatf-benefit-flip-back">
+                  <p className="iatf-benefit-description">
+                    Ensure your quality management system meets international automotive industry standards and requirements.
+                  </p>
+                </div>
               </div>
-              <h3 className="iatf-benefit-title">Quality Assurance</h3>
-              <p className="iatf-benefit-description">
-                Ensure your quality management system meets international automotive industry standards and requirements.
-              </p>
             </div>
             
-            <div className="iatf-benefit-card">
-              <div className="iatf-benefit-icon">
-                <i className="fas fa-chart-line"></i>
+            <div className="iatf-benefit-flip-card">
+              <div className="iatf-benefit-flip-inner">
+                <div className="iatf-benefit-flip-front">
+                  <div className="iatf-benefit-icon">
+                    <i className="fas fa-chart-line"></i>
+                  </div>
+                  <h3 className="iatf-benefit-title">Process Improvement</h3>
+                </div>
+                <div className="iatf-benefit-flip-back">
+                  <p className="iatf-benefit-description">
+                    Identify opportunities for continuous improvement and optimize your automotive manufacturing processes.
+                  </p>
+                </div>
               </div>
-              <h3 className="iatf-benefit-title">Process Improvement</h3>
-              <p className="iatf-benefit-description">
-                Identify opportunities for continuous improvement and optimize your automotive manufacturing processes.
-              </p>
             </div>
             
-            <div className="iatf-benefit-card">
-              <div className="iatf-benefit-icon">
-                <i className="fas fa-users"></i>
+            <div className="iatf-benefit-flip-card">
+              <div className="iatf-benefit-flip-inner">
+                <div className="iatf-benefit-flip-front">
+                  <div className="iatf-benefit-icon">
+                    <i className="fas fa-users"></i>
+                  </div>
+                  <h3 className="iatf-benefit-title">Expert Guidance</h3>
+                </div>
+                <div className="iatf-benefit-flip-back">
+                  <p className="iatf-benefit-description">
+                    Work with certified auditors who have extensive experience in automotive quality management systems.
+                  </p>
+                </div>
               </div>
-              <h3 className="iatf-benefit-title">Expert Guidance</h3>
-              <p className="iatf-benefit-description">
-                Work with certified auditors who have extensive experience in automotive quality management systems.
-              </p>
             </div>
             
-            <div className="iatf-benefit-card">
-              <div className="iatf-benefit-icon">
-                <i className="fas fa-handshake"></i>
+            <div className="iatf-benefit-flip-card">
+              <div className="iatf-benefit-flip-inner">
+                <div className="iatf-benefit-flip-front">
+                  <div className="iatf-benefit-icon">
+                    <i className="fas fa-handshake"></i>
+                  </div>
+                  <h3 className="iatf-benefit-title">Customer Satisfaction</h3>
+                </div>
+                <div className="iatf-benefit-flip-back">
+                  <p className="iatf-benefit-description">
+                    Enhance customer satisfaction through improved product quality and consistent delivery performance.
+                  </p>
+                </div>
               </div>
-              <h3 className="iatf-benefit-title">Customer Satisfaction</h3>
-              <p className="iatf-benefit-description">
-                Enhance customer satisfaction through improved product quality and consistent delivery performance.
-              </p>
             </div>
             
-            <div className="iatf-benefit-card">
-              <div className="iatf-benefit-icon">
-                <i className="fas fa-globe"></i>
+            <div className="iatf-benefit-flip-card">
+              <div className="iatf-benefit-flip-inner">
+                <div className="iatf-benefit-flip-front">
+                  <div className="iatf-benefit-icon">
+                    <i className="fas fa-globe"></i>
+                  </div>
+                  <h3 className="iatf-benefit-title">Global Recognition</h3>
+                </div>
+                <div className="iatf-benefit-flip-back">
+                  <p className="iatf-benefit-description">
+                    Gain international recognition and access to global automotive supply chains with IATF certification.
+                  </p>
+                </div>
               </div>
-              <h3 className="iatf-benefit-title">Global Recognition</h3>
-              <p className="iatf-benefit-description">
-                Gain international recognition and access to global automotive supply chains with IATF certification.
-              </p>
             </div>
           </div>
         </div>

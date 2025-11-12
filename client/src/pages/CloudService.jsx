@@ -107,64 +107,100 @@ const CloudService = () => {
           </div>
           
           <div className="cloud-benefits-grid">
-            <div className="cloud-benefit-card">
-              <div className="cloud-benefit-icon">
-                <i className="fas fa-expand-arrows-alt"></i>
+            <div className="cloud-benefit-flip-card">
+              <div className="cloud-benefit-flip-inner">
+                <div className="cloud-benefit-flip-front">
+                  <div className="cloud-benefit-icon">
+                    <i className="fas fa-expand-arrows-alt"></i>
+                  </div>
+                  <h3 className="cloud-benefit-title">Scalability</h3>
+                </div>
+                <div className="cloud-benefit-flip-back">
+                  <p className="cloud-benefit-description">
+                    Scale your infrastructure up or down based on demand, ensuring optimal performance and cost efficiency.
+                  </p>
+                </div>
               </div>
-              <h3 className="cloud-benefit-title">Scalability</h3>
-              <p className="cloud-benefit-description">
-                Scale your infrastructure up or down based on demand, ensuring optimal performance and cost efficiency.
-              </p>
             </div>
             
-            <div className="cloud-benefit-card">
-              <div className="cloud-benefit-icon">
-                <i className="fas fa-shield-alt"></i>
+            <div className="cloud-benefit-flip-card">
+              <div className="cloud-benefit-flip-inner">
+                <div className="cloud-benefit-flip-front">
+                  <div className="cloud-benefit-icon">
+                    <i className="fas fa-shield-alt"></i>
+                  </div>
+                  <h3 className="cloud-benefit-title">Enhanced Security</h3>
+                </div>
+                <div className="cloud-benefit-flip-back">
+                  <p className="cloud-benefit-description">
+                    Protect your data and applications with enterprise-grade security measures and compliance standards.
+                  </p>
+                </div>
               </div>
-              <h3 className="cloud-benefit-title">Enhanced Security</h3>
-              <p className="cloud-benefit-description">
-                Protect your data and applications with enterprise-grade security measures and compliance standards.
-              </p>
             </div>
             
-            <div className="cloud-benefit-card">
-              <div className="cloud-benefit-icon">
-                <i className="fas fa-dollar-sign"></i>
+            <div className="cloud-benefit-flip-card">
+              <div className="cloud-benefit-flip-inner">
+                <div className="cloud-benefit-flip-front">
+                  <div className="cloud-benefit-icon">
+                    <i className="fas fa-dollar-sign"></i>
+                  </div>
+                  <h3 className="cloud-benefit-title">Cost Efficiency</h3>
+                </div>
+                <div className="cloud-benefit-flip-back">
+                  <p className="cloud-benefit-description">
+                    Reduce infrastructure costs with pay-as-you-go pricing models and eliminate upfront hardware investments.
+                  </p>
+                </div>
               </div>
-              <h3 className="cloud-benefit-title">Cost Efficiency</h3>
-              <p className="cloud-benefit-description">
-                Reduce infrastructure costs with pay-as-you-go pricing models and eliminate upfront hardware investments.
-              </p>
             </div>
             
-            <div className="cloud-benefit-card">
-              <div className="cloud-benefit-icon">
-                <i className="fas fa-clock"></i>
+            <div className="cloud-benefit-flip-card">
+              <div className="cloud-benefit-flip-inner">
+                <div className="cloud-benefit-flip-front">
+                  <div className="cloud-benefit-icon">
+                    <i className="fas fa-clock"></i>
+                  </div>
+                  <h3 className="cloud-benefit-title">High Availability</h3>
+                </div>
+                <div className="cloud-benefit-flip-back">
+                  <p className="cloud-benefit-description">
+                    Ensure 99.9% uptime with redundant systems and automatic failover capabilities.
+                  </p>
+                </div>
               </div>
-              <h3 className="cloud-benefit-title">High Availability</h3>
-              <p className="cloud-benefit-description">
-                Ensure 99.9% uptime with redundant systems and automatic failover capabilities.
-              </p>
             </div>
             
-            <div className="cloud-benefit-card">
-              <div className="cloud-benefit-icon">
-                <i className="fas fa-globe"></i>
+            <div className="cloud-benefit-flip-card">
+              <div className="cloud-benefit-flip-inner">
+                <div className="cloud-benefit-flip-front">
+                  <div className="cloud-benefit-icon">
+                    <i className="fas fa-globe"></i>
+                  </div>
+                  <h3 className="cloud-benefit-title">Global Reach</h3>
+                </div>
+                <div className="cloud-benefit-flip-back">
+                  <p className="cloud-benefit-description">
+                    Deploy your applications globally with data centers located worldwide for optimal performance.
+                  </p>
+                </div>
               </div>
-              <h3 className="cloud-benefit-title">Global Reach</h3>
-              <p className="cloud-benefit-description">
-                Deploy your applications globally with data centers located worldwide for optimal performance.
-              </p>
             </div>
             
-            <div className="cloud-benefit-card">
-              <div className="cloud-benefit-icon">
-                <i className="fas fa-cogs"></i>
+            <div className="cloud-benefit-flip-card">
+              <div className="cloud-benefit-flip-inner">
+                <div className="cloud-benefit-flip-front">
+                  <div className="cloud-benefit-icon">
+                    <i className="fas fa-cogs"></i>
+                  </div>
+                  <h3 className="cloud-benefit-title">Managed Services</h3>
+                </div>
+                <div className="cloud-benefit-flip-back">
+                  <p className="cloud-benefit-description">
+                    Focus on your business while we handle infrastructure management, monitoring, and maintenance.
+                  </p>
+                </div>
               </div>
-              <h3 className="cloud-benefit-title">Managed Services</h3>
-              <p className="cloud-benefit-description">
-                Focus on your business while we handle infrastructure management, monitoring, and maintenance.
-              </p>
             </div>
           </div>
         </div>

@@ -84,64 +84,100 @@ const ESG = () => {
           </div>
           
           <div className="esg-benefits-grid">
-            <div className="esg-benefit-card">
-              <div className="esg-benefit-icon">
-                <i className="fas fa-leaf"></i>
+            <div className="esg-benefit-flip-card">
+              <div className="esg-benefit-flip-inner">
+                <div className="esg-benefit-flip-front">
+                  <div className="esg-benefit-icon">
+                    <i className="fas fa-leaf"></i>
+                  </div>
+                  <h3 className="esg-benefit-title">Environmental Impact</h3>
+                </div>
+                <div className="esg-benefit-flip-back">
+                  <p className="esg-benefit-description">
+                    Reduce your carbon footprint and implement sustainable practices that protect the environment while improving efficiency.
+                  </p>
+                </div>
               </div>
-              <h3 className="esg-benefit-title">Environmental Impact</h3>
-              <p className="esg-benefit-description">
-                Reduce your carbon footprint and implement sustainable practices that protect the environment while improving efficiency.
-              </p>
             </div>
             
-            <div className="esg-benefit-card">
-              <div className="esg-benefit-icon">
-                <i className="fas fa-users"></i>
+            <div className="esg-benefit-flip-card">
+              <div className="esg-benefit-flip-inner">
+                <div className="esg-benefit-flip-front">
+                  <div className="esg-benefit-icon">
+                    <i className="fas fa-users"></i>
+                  </div>
+                  <h3 className="esg-benefit-title">Social Responsibility</h3>
+                </div>
+                <div className="esg-benefit-flip-back">
+                  <p className="esg-benefit-description">
+                    Build stronger communities and stakeholder relationships through ethical business practices and social initiatives.
+                  </p>
+                </div>
               </div>
-              <h3 className="esg-benefit-title">Social Responsibility</h3>
-              <p className="esg-benefit-description">
-                Build stronger communities and stakeholder relationships through ethical business practices and social initiatives.
-              </p>
             </div>
             
-            <div className="esg-benefit-card">
-              <div className="esg-benefit-icon">
-                <i className="fas fa-shield-alt"></i>
+            <div className="esg-benefit-flip-card">
+              <div className="esg-benefit-flip-inner">
+                <div className="esg-benefit-flip-front">
+                  <div className="esg-benefit-icon">
+                    <i className="fas fa-shield-alt"></i>
+                  </div>
+                  <h3 className="esg-benefit-title">Governance Excellence</h3>
+                </div>
+                <div className="esg-benefit-flip-back">
+                  <p className="esg-benefit-description">
+                    Implement robust governance frameworks that ensure transparency, accountability, and long-term business sustainability.
+                  </p>
+                </div>
               </div>
-              <h3 className="esg-benefit-title">Governance Excellence</h3>
-              <p className="esg-benefit-description">
-                Implement robust governance frameworks that ensure transparency, accountability, and long-term business sustainability.
-              </p>
             </div>
             
-            <div className="esg-benefit-card">
-              <div className="esg-benefit-icon">
-                <i className="fas fa-chart-line"></i>
+            <div className="esg-benefit-flip-card">
+              <div className="esg-benefit-flip-inner">
+                <div className="esg-benefit-flip-front">
+                  <div className="esg-benefit-icon">
+                    <i className="fas fa-chart-line"></i>
+                  </div>
+                  <h3 className="esg-benefit-title">Financial Performance</h3>
+                </div>
+                <div className="esg-benefit-flip-back">
+                  <p className="esg-benefit-description">
+                    Drive better financial results through improved risk management, operational efficiency, and stakeholder confidence.
+                  </p>
+                </div>
               </div>
-              <h3 className="esg-benefit-title">Financial Performance</h3>
-              <p className="esg-benefit-description">
-                Drive better financial results through improved risk management, operational efficiency, and stakeholder confidence.
-              </p>
             </div>
             
-            <div className="esg-benefit-card">
-              <div className="esg-benefit-icon">
-                <i className="fas fa-award"></i>
+            <div className="esg-benefit-flip-card">
+              <div className="esg-benefit-flip-inner">
+                <div className="esg-benefit-flip-front">
+                  <div className="esg-benefit-icon">
+                    <i className="fas fa-award"></i>
+                  </div>
+                  <h3 className="esg-benefit-title">Compliance & Reporting</h3>
+                </div>
+                <div className="esg-benefit-flip-back">
+                  <p className="esg-benefit-description">
+                    Stay ahead of regulatory requirements with comprehensive ESG reporting and compliance management solutions.
+                  </p>
+                </div>
               </div>
-              <h3 className="esg-benefit-title">Compliance & Reporting</h3>
-              <p className="esg-benefit-description">
-                Stay ahead of regulatory requirements with comprehensive ESG reporting and compliance management solutions.
-              </p>
             </div>
             
-            <div className="esg-benefit-card">
-              <div className="esg-benefit-icon">
-                <i className="fas fa-handshake"></i>
+            <div className="esg-benefit-flip-card">
+              <div className="esg-benefit-flip-inner">
+                <div className="esg-benefit-flip-front">
+                  <div className="esg-benefit-icon">
+                    <i className="fas fa-handshake"></i>
+                  </div>
+                  <h3 className="esg-benefit-title">Stakeholder Trust</h3>
+                </div>
+                <div className="esg-benefit-flip-back">
+                  <p className="esg-benefit-description">
+                    Build lasting trust with investors, customers, and partners through transparent and responsible business practices.
+                  </p>
+                </div>
               </div>
-              <h3 className="esg-benefit-title">Stakeholder Trust</h3>
-              <p className="esg-benefit-description">
-                Build lasting trust with investors, customers, and partners through transparent and responsible business practices.
-              </p>
             </div>
           </div>
         </div>
